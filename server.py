@@ -65,7 +65,7 @@ from auth.dependencies import provider
 
 auth_settings = AuthSettings(
     issuer_url="https://aoctest.webine3.com/aoc-mcp",
-    resource_server_url="https://aoctest.webine3.com/aoc-mcp/mcp",
+    resource_server_url="https://aoctest.webine3.com/aoc-mcp",
     required_scopes=["mcp"],
 )
 
@@ -77,8 +77,8 @@ mcp = FastMCP(
     port=8005,
     auth_server_provider=provider,
     auth=auth_settings,
-    mount_path="/aoc-mcp",
-    streamable_http_path="/mcp"
+    mount_path="/",
+    streamable_http_path="/"
 )
 
 # ── Existing tools (unchanged) ──────────────────────────────────────────

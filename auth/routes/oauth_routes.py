@@ -4,7 +4,6 @@ from starlette.responses import RedirectResponse, JSONResponse
 from auth.dependencies import (
     provider,
     auth_service,
-    session_store,
 )
 
 
