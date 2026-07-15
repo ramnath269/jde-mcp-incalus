@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "jde-po-schema": {
+      "command": "python3",
+      "args": ["/home/ubuntu/jde-mcp-incalus/jde_po_schema_server.py"],
+      "env": { "JDE_SCHEMA_DIR": "/home/ubuntu/jde-mcp-incalus/data" }
+    },
+    "incalus-jde": { "serverUrl": "https://aoctest.webine3.com/aoc-mcp" },
+    "aoc-jde":     { "serverUrl": "https://aoctest.webine3.com/mcp" }
+  }
+}

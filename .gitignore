@@ -1,0 +1,24 @@
+# Python
+venv/
+__pycache__/
+
+# Secrets
+.env
+.env.*
+
+# OAuth/JDE credentials
+config/local.py
+config/secrets.py
+
+# TLS certificates
+certs/
+*.pem
+*.key
+
+# Runtime
+logs/
+*.log
+
+# IDE
+.vscode/
+.idea/

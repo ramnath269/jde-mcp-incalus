@@ -1,0 +1,2304 @@
+{
+  "table": "F4311",
+  "description": "Purchase Order Detail File - one row per purchase order line",
+  "prefix": "PD",
+  "system": "43 - Procurement",
+  "unique_key": [
+    "PDKCOO",
+    "PDDOCO",
+    "PDDCTO",
+    "PDSFXO",
+    "PDLNID"
+  ],
+  "surrogate_key": "PDUKID",
+  "time_columns": [
+    "PDTDAY",
+    "PDDRQT",
+    "PDRSHT",
+    "PDCHT",
+    "PDCHRT"
+  ],
+  "column_count": 228,
+  "columns": [
+    {
+      "ordinal": 1,
+      "field": "PDKCOO",
+      "data_item": "KCOO",
+      "description": "Order Company (Order Number)",
+      "data_type": "String",
+      "length": 5,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 2,
+      "field": "PDDOCO",
+      "data_item": "DOCO",
+      "description": "Document (Order No Invoice etc.)",
+      "data_type": "Numeric",
+      "length": 8,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 3,
+      "field": "PDDCTO",
+      "data_item": "DCTO",
+      "description": "Order Type",
+      "data_type": "String",
+      "length": 2,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 4,
+      "field": "PDSFXO",
+      "data_item": "SFXO",
+      "description": "Order Suffix",
+      "data_type": "String",
+      "length": 3,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 5,
+      "field": "PDLNID",
+      "data_item": "LNID",
+      "description": "Line Number",
+      "data_type": "Numeric",
+      "length": 6,
+      "decimals": 3,
+      "glossary": ""
+    },
+    {
+      "ordinal": 6,
+      "field": "PDMCU",
+      "data_item": "MCU",
+      "description": "Business Unit",
+      "data_type": "String",
+      "length": 12,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 7,
+      "field": "PDCO",
+      "data_item": "CO",
+      "description": "Company",
+      "data_type": "String",
+      "length": 5,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 8,
+      "field": "PDOKCO",
+      "data_item": "OKCO",
+      "description": "Document Company (Original Order)",
+      "data_type": "String",
+      "length": 5,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 9,
+      "field": "PDOORN",
+      "data_item": "OORN",
+      "description": "Original Order Number",
+      "data_type": "String",
+      "length": 8,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 10,
+      "field": "PDOCTO",
+      "data_item": "OCTO",
+      "description": "Original Order Type",
+      "data_type": "String",
+      "length": 2,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 11,
+      "field": "PDOGNO",
+      "data_item": "OGNO",
+      "description": "Original Line Number",
+      "data_type": "Numeric",
+      "length": 7,
+      "decimals": 3,
+      "glossary": ""
+    },
+    {
+      "ordinal": 12,
+      "field": "PDRKCO",
+      "data_item": "RKCO",
+      "description": "Company - Key (Related Order)",
+      "data_type": "String",
+      "length": 5,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 13,
+      "field": "PDRORN",
+      "data_item": "RORN",
+      "description": "Related PO/SO/WO Number",
+      "data_type": "String",
+      "length": 8,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 14,
+      "field": "PDRCTO",
+      "data_item": "RCTO",
+      "description": "Related PO/SO/WO Order Type",
+      "data_type": "String",
+      "length": 2,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 15,
+      "field": "PDRLLN",
+      "data_item": "RLLN",
+      "description": "Related PO/SO Line Number",
+      "data_type": "Numeric",
+      "length": 7,
+      "decimals": 3,
+      "glossary": ""
+    },
+    {
+      "ordinal": 16,
+      "field": "PDDMCT",
+      "data_item": "DMCT",
+      "description": "Agreement Number - Distribution",
+      "data_type": "String",
+      "length": 12,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 17,
+      "field": "PDDMCS",
+      "data_item": "DMCS",
+      "description": "Agreement Supplement - Distribution",
+      "data_type": "Numeric",
+      "length": 3,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 18,
+      "field": "PDBALU",
+      "data_item": "BALU",
+      "description": "Contract Balances Updated Y/N",
+      "data_type": "Character",
+      "length": 1,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 19,
+      "field": "PDAN8",
+      "data_item": "AN8",
+      "description": "Address Number",
+      "data_type": "Numeric",
+      "length": 8,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 20,
+      "field": "PDSHAN",
+      "data_item": "SHAN",
+      "description": "Address Number - Ship To",
+      "data_type": "Numeric",
+      "length": 8,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 21,
+      "field": "PDDRQJ",
+      "data_item": "DRQJ",
+      "description": "Date - Requested",
+      "data_type": "Date",
+      "length": 6,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 22,
+      "field": "PDTRDJ",
+      "data_item": "TRDJ",
+      "description": "Date - Order/Transaction",
+      "data_type": "Date",
+      "length": 6,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 23,
+      "field": "PDPDDJ",
+      "data_item": "PDDJ",
+      "description": "Date - Scheduled Pick",
+      "data_type": "Date",
+      "length": 6,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 24,
+      "field": "PDOPDJ",
+      "data_item": "OPDJ",
+      "description": "Date - Original Promised Delivery",
+      "data_type": "Date",
+      "length": 6,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 25,
+      "field": "PDADDJ",
+      "data_item": "ADDJ",
+      "description": "Date - Actual Ship Date",
+      "data_type": "Date",
+      "length": 6,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 26,
+      "field": "PDCNDJ",
+      "data_item": "CNDJ",
+      "description": "Date - Cancel",
+      "data_type": "Date",
+      "length": 6,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 27,
+      "field": "PDPEFJ",
+      "data_item": "PEFJ",
+      "description": "Date - Price Effective Date",
+      "data_type": "Date",
+      "length": 6,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 28,
+      "field": "PDPPDJ",
+      "data_item": "PPDJ",
+      "description": "Date - Promised Shipment",
+      "data_type": "Date",
+      "length": 6,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 29,
+      "field": "PDPSDJ",
+      "data_item": "PSDJ",
+      "description": "Date - Future Date 2",
+      "data_type": "Date",
+      "length": 6,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 30,
+      "field": "PDDSVJ",
+      "data_item": "DSVJ",
+      "description": "Date - Service/Tax",
+      "data_type": "Date",
+      "length": 6,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 31,
+      "field": "PDDGL",
+      "data_item": "DGL",
+      "description": "Date - For G/L (and Voucher)",
+      "data_type": "Date",
+      "length": 6,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 32,
+      "field": "PDPN",
+      "data_item": "PN",
+      "description": "Period Number - General Ledger",
+      "data_type": "Numeric",
+      "length": 2,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 33,
+      "field": "PDVR01",
+      "data_item": "VR01",
+      "description": "Reference",
+      "data_type": "String",
+      "length": 25,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 34,
+      "field": "PDVR02",
+      "data_item": "VR02",
+      "description": "Reference 2",
+      "data_type": "String",
+      "length": 25,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 35,
+      "field": "PDITM",
+      "data_item": "ITM",
+      "description": "Item Number - Short",
+      "data_type": "Numeric",
+      "length": 8,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 36,
+      "field": "PDLITM",
+      "data_item": "LITM",
+      "description": "2nd Item Number",
+      "data_type": "String",
+      "length": 25,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 37,
+      "field": "PDAITM",
+      "data_item": "AITM",
+      "description": "3rd Item Number",
+      "data_type": "String",
+      "length": 25,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 38,
+      "field": "PDLOCN",
+      "data_item": "LOCN",
+      "description": "Location",
+      "data_type": "String",
+      "length": 20,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 39,
+      "field": "PDLOTN",
+      "data_item": "LOTN",
+      "description": "Lot/Serial Number",
+      "data_type": "String",
+      "length": 30,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 40,
+      "field": "PDFRGD",
+      "data_item": "FRGD",
+      "description": "From Grade",
+      "data_type": "String",
+      "length": 3,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 41,
+      "field": "PDTHGD",
+      "data_item": "THGD",
+      "description": "Thru Grade",
+      "data_type": "String",
+      "length": 3,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 42,
+      "field": "PDFRMP",
+      "data_item": "FRMP",
+      "description": "From Potency",
+      "data_type": "Numeric",
+      "length": 7,
+      "decimals": 3,
+      "glossary": ""
+    },
+    {
+      "ordinal": 43,
+      "field": "PDTHRP",
+      "data_item": "THRP",
+      "description": "Thru Potency",
+      "data_type": "Numeric",
+      "length": 7,
+      "decimals": 3,
+      "glossary": ""
+    },
+    {
+      "ordinal": 44,
+      "field": "PDDSC1",
+      "data_item": "DSC1",
+      "description": "Description",
+      "data_type": "String",
+      "length": 30,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 45,
+      "field": "PDDSC2",
+      "data_item": "DSC2",
+      "description": "Description - Line 2",
+      "data_type": "String",
+      "length": 30,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 46,
+      "field": "PDLNTY",
+      "data_item": "LNTY",
+      "description": "Line Type",
+      "data_type": "String",
+      "length": 2,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 47,
+      "field": "PDNXTR",
+      "data_item": "NXTR",
+      "description": "Status Code - Next",
+      "data_type": "String",
+      "length": 3,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 48,
+      "field": "PDLTTR",
+      "data_item": "LTTR",
+      "description": "Status Code - Last",
+      "data_type": "String",
+      "length": 3,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 49,
+      "field": "PDRLIT",
+      "data_item": "RLIT",
+      "description": "Item Number - Related (Kit)",
+      "data_type": "String",
+      "length": 8,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 50,
+      "field": "PDPDS1",
+      "data_item": "PDS1",
+      "description": "Reporting Code 1 - Sales",
+      "data_type": "String",
+      "length": 3,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 51,
+      "field": "PDPDS2",
+      "data_item": "PDS2",
+      "description": "Reporting Code 2 - Sales",
+      "data_type": "String",
+      "length": 3,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 52,
+      "field": "PDPDS3",
+      "data_item": "PDS3",
+      "description": "Reporting Code 3 - Sales",
+      "data_type": "String",
+      "length": 3,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 53,
+      "field": "PDPDS4",
+      "data_item": "PDS4",
+      "description": "Reporting Code 4 - Sales",
+      "data_type": "String",
+      "length": 3,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 54,
+      "field": "PDPDS5",
+      "data_item": "PDS5",
+      "description": "Reporting Code 5 - Sales",
+      "data_type": "String",
+      "length": 3,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 55,
+      "field": "PDPDP1",
+      "data_item": "PDP1",
+      "description": "Reporting Code 1 - Purchasing",
+      "data_type": "String",
+      "length": 3,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 56,
+      "field": "PDPDP2",
+      "data_item": "PDP2",
+      "description": "Reporting Code 2 - Purchasing",
+      "data_type": "String",
+      "length": 3,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 57,
+      "field": "PDPDP3",
+      "data_item": "PDP3",
+      "description": "Reporting Code 3 - Purchasing",
+      "data_type": "String",
+      "length": 3,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 58,
+      "field": "PDPDP4",
+      "data_item": "PDP4",
+      "description": "Reporting Code 4 - Purchasing",
+      "data_type": "String",
+      "length": 3,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 59,
+      "field": "PDPDP5",
+      "data_item": "PDP5",
+      "description": "Reporting Code 5 - Purchasing",
+      "data_type": "String",
+      "length": 3,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 60,
+      "field": "PDUOM",
+      "data_item": "UOM",
+      "description": "Unit of Measure as Input",
+      "data_type": "String",
+      "length": 2,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 61,
+      "field": "PDUORG",
+      "data_item": "UORG",
+      "description": "Units - Order/Transaction Quantity",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 62,
+      "field": "PDUCHG",
+      "data_item": "UCHG",
+      "description": "Units - On Hold",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 63,
+      "field": "PDUOPN",
+      "data_item": "UOPN",
+      "description": "Units - Open",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 64,
+      "field": "PDUREC",
+      "data_item": "UREC",
+      "description": "Units - Received",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 65,
+      "field": "PDCREC",
+      "data_item": "CREC",
+      "description": "Units - Cumulative Received",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 66,
+      "field": "PDURLV",
+      "data_item": "URLV",
+      "description": "Units - Relieved",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 67,
+      "field": "PDOTQY",
+      "data_item": "OTQY",
+      "description": "Other Quantity (1/2)",
+      "data_type": "Character",
+      "length": 1,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 68,
+      "field": "PDPRRC",
+      "data_item": "PRRC",
+      "description": "Amount - Unit Cost",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 4,
+      "glossary": ""
+    },
+    {
+      "ordinal": 69,
+      "field": "PDAEXP",
+      "data_item": "AEXP",
+      "description": "Amount - Extended Price",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 2,
+      "glossary": ""
+    },
+    {
+      "ordinal": 70,
+      "field": "PDACHG",
+      "data_item": "ACHG",
+      "description": "Amount - On Hold",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 2,
+      "glossary": ""
+    },
+    {
+      "ordinal": 71,
+      "field": "PDAOPN",
+      "data_item": "AOPN",
+      "description": "Amount - Open",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 2,
+      "glossary": ""
+    },
+    {
+      "ordinal": 72,
+      "field": "PDAREC",
+      "data_item": "AREC",
+      "description": "Amount - Received",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 2,
+      "glossary": ""
+    },
+    {
+      "ordinal": 73,
+      "field": "PDARLV",
+      "data_item": "ARLV",
+      "description": "Amount - Relieved",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 2,
+      "glossary": ""
+    },
+    {
+      "ordinal": 74,
+      "field": "PDFTN1",
+      "data_item": "FTN1",
+      "description": "Amount - Tax Commitment",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 2,
+      "glossary": ""
+    },
+    {
+      "ordinal": 75,
+      "field": "PDTRLV",
+      "data_item": "TRLV",
+      "description": "Amount - Tax Relieved",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 2,
+      "glossary": ""
+    },
+    {
+      "ordinal": 76,
+      "field": "PDPROV",
+      "data_item": "PROV",
+      "description": "Price Override Code",
+      "data_type": "Character",
+      "length": 1,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 77,
+      "field": "PDAMC3",
+      "data_item": "AMC3",
+      "description": "Unit Cost - Purchasing",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 4,
+      "glossary": ""
+    },
+    {
+      "ordinal": 78,
+      "field": "PDECST",
+      "data_item": "ECST",
+      "description": "Amount - Extended Cost",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 2,
+      "glossary": ""
+    },
+    {
+      "ordinal": 79,
+      "field": "PDCSTO",
+      "data_item": "CSTO",
+      "description": "Cost Override Code",
+      "data_type": "Character",
+      "length": 1,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 80,
+      "field": "PDCSMP",
+      "data_item": "CSMP",
+      "description": "Costing Method - Purchasing",
+      "data_type": "Character",
+      "length": 1,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 81,
+      "field": "PDINMG",
+      "data_item": "INMG",
+      "description": "Print Message",
+      "data_type": "String",
+      "length": 10,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 82,
+      "field": "PDASN",
+      "data_item": "ASN",
+      "description": "Price and Adjustment Schedule",
+      "data_type": "String",
+      "length": 8,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 83,
+      "field": "PDPRGR",
+      "data_item": "PRGR",
+      "description": "Item Price Group",
+      "data_type": "String",
+      "length": 8,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 84,
+      "field": "PDCLVL",
+      "data_item": "CLVL",
+      "description": "Pricing Category Level",
+      "data_type": "String",
+      "length": 3,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 85,
+      "field": "PDCATN",
+      "data_item": "CATN",
+      "description": "Catalog",
+      "data_type": "String",
+      "length": 8,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 86,
+      "field": "PDDSPR",
+      "data_item": "DSPR",
+      "description": "Discount Factor",
+      "data_type": "Numeric",
+      "length": 7,
+      "decimals": 4,
+      "glossary": ""
+    },
+    {
+      "ordinal": 87,
+      "field": "PDPTC",
+      "data_item": "PTC",
+      "description": "Payment Terms Code",
+      "data_type": "String",
+      "length": 3,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 88,
+      "field": "PDTX",
+      "data_item": "TX",
+      "description": "Purchasing Taxable (Y/N)",
+      "data_type": "Character",
+      "length": 1,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 89,
+      "field": "PDEXR1",
+      "data_item": "EXR1",
+      "description": "Tax Expl Code 1",
+      "data_type": "String",
+      "length": 2,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 90,
+      "field": "PDTXA1",
+      "data_item": "TXA1",
+      "description": "Tax Rate/Area",
+      "data_type": "String",
+      "length": 10,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 91,
+      "field": "PDATXT",
+      "data_item": "ATXT",
+      "description": "Associated Text",
+      "data_type": "Character",
+      "length": 1,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 92,
+      "field": "PDCNID",
+      "data_item": "CNID",
+      "description": "Container I.D.",
+      "data_type": "String",
+      "length": 20,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 93,
+      "field": "PDCDCD",
+      "data_item": "CDCD",
+      "description": "Commodity Code",
+      "data_type": "String",
+      "length": 15,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 94,
+      "field": "PDNTR",
+      "data_item": "NTR",
+      "description": "Nature of Transaction",
+      "data_type": "String",
+      "length": 2,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 95,
+      "field": "PDFRTH",
+      "data_item": "FRTH",
+      "description": "Freight Handling Code",
+      "data_type": "String",
+      "length": 3,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 96,
+      "field": "PDFRTC",
+      "data_item": "FRTC",
+      "description": "Freight Calculated (Y/N)",
+      "data_type": "Character",
+      "length": 1,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 97,
+      "field": "PDZON",
+      "data_item": "ZON",
+      "description": "Zone Number",
+      "data_type": "String",
+      "length": 3,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 98,
+      "field": "PDFRAT",
+      "data_item": "FRAT",
+      "description": "Rate Code - Frieght/Misc",
+      "data_type": "String",
+      "length": 10,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 99,
+      "field": "PDRATT",
+      "data_item": "RATT",
+      "description": "Rate Type - Freight/Misc",
+      "data_type": "Character",
+      "length": 1,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 100,
+      "field": "PDANBY",
+      "data_item": "ANBY",
+      "description": "Buyer Number",
+      "data_type": "Numeric",
+      "length": 8,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 101,
+      "field": "PDANCR",
+      "data_item": "ANCR",
+      "description": "Carrier Number",
+      "data_type": "Numeric",
+      "length": 8,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 102,
+      "field": "PDMOT",
+      "data_item": "MOT",
+      "description": "Mode of Transport",
+      "data_type": "String",
+      "length": 3,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 103,
+      "field": "PDCOT",
+      "data_item": "COT",
+      "description": "Conditions of Transport",
+      "data_type": "String",
+      "length": 3,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 104,
+      "field": "PDSHCM",
+      "data_item": "SHCM",
+      "description": "Shipping Commodity Class",
+      "data_type": "String",
+      "length": 3,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 105,
+      "field": "PDSHCN",
+      "data_item": "SHCN",
+      "description": "Shipping Conditions Code",
+      "data_type": "String",
+      "length": 3,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 106,
+      "field": "PDUOM1",
+      "data_item": "UOM1",
+      "description": "Unit of Measure - Primary",
+      "data_type": "String",
+      "length": 2,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 107,
+      "field": "PDPQOR",
+      "data_item": "PQOR",
+      "description": "Units - Primary Quantity Ordered",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 108,
+      "field": "PDUOM2",
+      "data_item": "UOM2",
+      "description": "Unit of Measure - Secondary",
+      "data_type": "String",
+      "length": 2,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 109,
+      "field": "PDSQOR",
+      "data_item": "SQOR",
+      "description": "Units - Secondary Quantity Ordered",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 110,
+      "field": "PDUOM3",
+      "data_item": "UOM3",
+      "description": "Unit of Measure - Purchasing",
+      "data_type": "String",
+      "length": 2,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 111,
+      "field": "PDITWT",
+      "data_item": "ITWT",
+      "description": "Unit Weight",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 4,
+      "glossary": ""
+    },
+    {
+      "ordinal": 112,
+      "field": "PDWTUM",
+      "data_item": "WTUM",
+      "description": "Weight Unit of Measure",
+      "data_type": "String",
+      "length": 2,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 113,
+      "field": "PDITVL",
+      "data_item": "ITVL",
+      "description": "Unit Volume",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 4,
+      "glossary": ""
+    },
+    {
+      "ordinal": 114,
+      "field": "PDVLUM",
+      "data_item": "VLUM",
+      "description": "Volume Unit of Measure",
+      "data_type": "String",
+      "length": 2,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 115,
+      "field": "PDGLC",
+      "data_item": "GLC",
+      "description": "G/L Offset",
+      "data_type": "String",
+      "length": 4,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 116,
+      "field": "PDCTRY",
+      "data_item": "CTRY",
+      "description": "Century",
+      "data_type": "Numeric",
+      "length": 2,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 117,
+      "field": "PDFY",
+      "data_item": "FY",
+      "description": "Fiscal Year",
+      "data_type": "Numeric",
+      "length": 2,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 118,
+      "field": "PDSTTS",
+      "data_item": "STTS",
+      "description": "Line Status",
+      "data_type": "String",
+      "length": 2,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 119,
+      "field": "PDRCD",
+      "data_item": "RCD",
+      "description": "Reason Code",
+      "data_type": "String",
+      "length": 3,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 120,
+      "field": "PDFUF1",
+      "data_item": "FUF1",
+      "description": "AIA Document Flag",
+      "data_type": "Character",
+      "length": 1,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 121,
+      "field": "PDFUF2",
+      "data_item": "FUF2",
+      "description": "Post Quantities",
+      "data_type": "Character",
+      "length": 1,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 122,
+      "field": "PDGRWT",
+      "data_item": "GRWT",
+      "description": "Gross Weight",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 4,
+      "glossary": ""
+    },
+    {
+      "ordinal": 123,
+      "field": "PDGWUM",
+      "data_item": "GWUM",
+      "description": "Gross Weight Unit of Measure",
+      "data_type": "String",
+      "length": 2,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 124,
+      "field": "PDLT",
+      "data_item": "LT",
+      "description": "Ledger Types",
+      "data_type": "String",
+      "length": 2,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 125,
+      "field": "PDANI",
+      "data_item": "ANI",
+      "description": "Account Number - Input (Mode Unknown)",
+      "data_type": "String",
+      "length": 29,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 126,
+      "field": "PDAID",
+      "data_item": "AID",
+      "description": "Account ID",
+      "data_type": "String",
+      "length": 8,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 127,
+      "field": "PDOMCU",
+      "data_item": "OMCU",
+      "description": "Project Business Unit",
+      "data_type": "String",
+      "length": 12,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 128,
+      "field": "PDOBJ",
+      "data_item": "OBJ",
+      "description": "Object Account",
+      "data_type": "String",
+      "length": 6,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 129,
+      "field": "PDSUB",
+      "data_item": "SUB",
+      "description": "Subsidiary",
+      "data_type": "String",
+      "length": 8,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 130,
+      "field": "PDSBLT",
+      "data_item": "SBLT",
+      "description": "Subledger Type",
+      "data_type": "Character",
+      "length": 1,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 131,
+      "field": "PDSBL",
+      "data_item": "SBL",
+      "description": "Subledger - G/L",
+      "data_type": "String",
+      "length": 8,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 132,
+      "field": "PDASID",
+      "data_item": "ASID",
+      "description": "Serial Number",
+      "data_type": "String",
+      "length": 25,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 133,
+      "field": "PDCCMP",
+      "data_item": "CCMP",
+      "description": "Cost Component Number",
+      "data_type": "Numeric",
+      "length": 3,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 134,
+      "field": "PDTAG",
+      "data_item": "TAG",
+      "description": "Tag - Reference",
+      "data_type": "String",
+      "length": 8,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 135,
+      "field": "PDWR01",
+      "data_item": "WR01",
+      "description": "Categories - Work Order 01",
+      "data_type": "String",
+      "length": 4,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 136,
+      "field": "PDPL",
+      "data_item": "PL",
+      "description": "Plan Number",
+      "data_type": "String",
+      "length": 4,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 137,
+      "field": "PDELEV",
+      "data_item": "ELEV",
+      "description": "Elevation",
+      "data_type": "String",
+      "length": 3,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 138,
+      "field": "PDR001",
+      "data_item": "R001",
+      "description": "Category Code - G/L1",
+      "data_type": "String",
+      "length": 3,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 139,
+      "field": "PDRTNR",
+      "data_item": "RTNR",
+      "description": "Retainage Rule",
+      "data_type": "String",
+      "length": 3,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 140,
+      "field": "PDLCOD",
+      "data_item": "LCOD",
+      "description": "Code - Location Tax Status",
+      "data_type": "String",
+      "length": 2,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 141,
+      "field": "PDPURG",
+      "data_item": "PURG",
+      "description": "Purge Code",
+      "data_type": "Character",
+      "length": 1,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 142,
+      "field": "PDPROM",
+      "data_item": "PROM",
+      "description": "Processing Mode",
+      "data_type": "Character",
+      "length": 1,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 143,
+      "field": "PDFNLP",
+      "data_item": "FNLP",
+      "description": "Closed Item - As Of Processing",
+      "data_type": "Character",
+      "length": 1,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 144,
+      "field": "PDAVCH",
+      "data_item": "AVCH",
+      "description": "Code - Evaluated Receipt Settlement",
+      "data_type": "Character",
+      "length": 1,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 145,
+      "field": "PDPRPY",
+      "data_item": "PRPY",
+      "description": "Pre-Payment (Y/N)",
+      "data_type": "Character",
+      "length": 1,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 146,
+      "field": "PDUNCD",
+      "data_item": "UNCD",
+      "description": "Work Order Freeze Code",
+      "data_type": "Character",
+      "length": 1,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 147,
+      "field": "PDMATY",
+      "data_item": "MATY",
+      "description": "Type - Match Type",
+      "data_type": "Character",
+      "length": 1,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 148,
+      "field": "PDRTGC",
+      "data_item": "RTGC",
+      "description": "Routing Process (Y/N)",
+      "data_type": "Character",
+      "length": 1,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 149,
+      "field": "PDRCPF",
+      "data_item": "RCPF",
+      "description": "Leadtime Recalculated (Y/N)",
+      "data_type": "Character",
+      "length": 1,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 150,
+      "field": "PDPS01",
+      "data_item": "PS01",
+      "description": "Transfer/Direct Ship Flag",
+      "data_type": "Character",
+      "length": 1,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 151,
+      "field": "PDPS02",
+      "data_item": "PS02",
+      "description": "Purchase Order Status 02",
+      "data_type": "Character",
+      "length": 1,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 152,
+      "field": "PDPS03",
+      "data_item": "PS03",
+      "description": "Purchase Order Status 03",
+      "data_type": "Character",
+      "length": 1,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 153,
+      "field": "PDPS04",
+      "data_item": "PS04",
+      "description": "Purchase Order Status 04",
+      "data_type": "Character",
+      "length": 1,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 154,
+      "field": "PDPS05",
+      "data_item": "PS05",
+      "description": "Purchase Order Status 05",
+      "data_type": "Character",
+      "length": 1,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 155,
+      "field": "PDPS06",
+      "data_item": "PS06",
+      "description": "Purchase Order Status 06",
+      "data_type": "Character",
+      "length": 1,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 156,
+      "field": "PDPS07",
+      "data_item": "PS07",
+      "description": "Purchase Order Status 07",
+      "data_type": "Character",
+      "length": 1,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 157,
+      "field": "PDPS08",
+      "data_item": "PS08",
+      "description": "Purchase Order Status 08",
+      "data_type": "Character",
+      "length": 1,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 158,
+      "field": "PDPS09",
+      "data_item": "PS09",
+      "description": "Purchase Order Status 09",
+      "data_type": "Character",
+      "length": 1,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 159,
+      "field": "PDPS10",
+      "data_item": "PS10",
+      "description": "Purchase Order Status 10",
+      "data_type": "Character",
+      "length": 1,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 160,
+      "field": "PDCRMD",
+      "data_item": "CRMD",
+      "description": "Send Method",
+      "data_type": "Character",
+      "length": 1,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 161,
+      "field": "PDARTG",
+      "data_item": "ARTG",
+      "description": "Code - Approval Routing",
+      "data_type": "String",
+      "length": 12,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 162,
+      "field": "PDCORD",
+      "data_item": "CORD",
+      "description": "Change Order Number",
+      "data_type": "Numeric",
+      "length": 3,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 163,
+      "field": "PDCHDT",
+      "data_item": "CHDT",
+      "description": "Change Order Type",
+      "data_type": "String",
+      "length": 2,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 164,
+      "field": "PDDOCC",
+      "data_item": "DOCC",
+      "description": "Document (Change Order #)",
+      "data_type": "Numeric",
+      "length": 8,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 165,
+      "field": "PDCHLN",
+      "data_item": "CHLN",
+      "description": "Change Order Line Number",
+      "data_type": "Numeric",
+      "length": 7,
+      "decimals": 3,
+      "glossary": ""
+    },
+    {
+      "ordinal": 166,
+      "field": "PDCRCD",
+      "data_item": "CRCD",
+      "description": "Currency Code - From",
+      "data_type": "String",
+      "length": 3,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 167,
+      "field": "PDCRR",
+      "data_item": "CRR",
+      "description": "Currency Conversion Rate - Spot Rate",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 168,
+      "field": "PDFRRC",
+      "data_item": "FRRC",
+      "description": "Amount - Foreign Unit Price",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 4,
+      "glossary": ""
+    },
+    {
+      "ordinal": 169,
+      "field": "PDFEA",
+      "data_item": "FEA",
+      "description": "Amount - Foreign Extended Price",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 2,
+      "glossary": ""
+    },
+    {
+      "ordinal": 170,
+      "field": "PDFUC",
+      "data_item": "FUC",
+      "description": "Amount - Foreign Unit Cost",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 4,
+      "glossary": ""
+    },
+    {
+      "ordinal": 171,
+      "field": "PDFEC",
+      "data_item": "FEC",
+      "description": "Amount - Foreign Extended Cost",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 2,
+      "glossary": ""
+    },
+    {
+      "ordinal": 172,
+      "field": "PDFCHG",
+      "data_item": "FCHG",
+      "description": "Amount - Foreign Changed Amount",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 2,
+      "glossary": ""
+    },
+    {
+      "ordinal": 173,
+      "field": "PDFAP",
+      "data_item": "FAP",
+      "description": "Amount - Foreign Open",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 2,
+      "glossary": ""
+    },
+    {
+      "ordinal": 174,
+      "field": "PDFREC",
+      "data_item": "FREC",
+      "description": "Amount - Received Foreign",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 2,
+      "glossary": ""
+    },
+    {
+      "ordinal": 175,
+      "field": "PDURCD",
+      "data_item": "URCD",
+      "description": "User Reserved Code",
+      "data_type": "String",
+      "length": 2,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 176,
+      "field": "PDURDT",
+      "data_item": "URDT",
+      "description": "User Reserved Date",
+      "data_type": "Date",
+      "length": 6,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 177,
+      "field": "PDURAT",
+      "data_item": "URAT",
+      "description": "User Reserved Amount",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 2,
+      "glossary": ""
+    },
+    {
+      "ordinal": 178,
+      "field": "PDURAB",
+      "data_item": "URAB",
+      "description": "User Reserved Number",
+      "data_type": "Numeric",
+      "length": 8,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 179,
+      "field": "PDURRF",
+      "data_item": "URRF",
+      "description": "User Reserved Reference",
+      "data_type": "String",
+      "length": 15,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 180,
+      "field": "PDTORG",
+      "data_item": "TORG",
+      "description": "Transaction Originator",
+      "data_type": "String",
+      "length": 10,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 181,
+      "field": "PDUSER",
+      "data_item": "USER",
+      "description": "User ID",
+      "data_type": "String",
+      "length": 10,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 182,
+      "field": "PDPID",
+      "data_item": "PID",
+      "description": "Program ID",
+      "data_type": "String",
+      "length": 10,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 183,
+      "field": "PDJOBN",
+      "data_item": "JOBN",
+      "description": "Work Station ID",
+      "data_type": "String",
+      "length": 10,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 184,
+      "field": "PDUPMJ",
+      "data_item": "UPMJ",
+      "description": "Date - Updated",
+      "data_type": "Date",
+      "length": 6,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 185,
+      "field": "PDTDAY",
+      "data_item": "TDAY",
+      "description": "Time of Day",
+      "data_type": "Numeric",
+      "length": 6,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 186,
+      "field": "PDVR05",
+      "data_item": "VR05",
+      "description": "Outside Reference 2",
+      "data_type": "String",
+      "length": 25,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 187,
+      "field": "PDVR04",
+      "data_item": "VR04",
+      "description": "Outside Reference 1",
+      "data_type": "String",
+      "length": 25,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 188,
+      "field": "PDSHPN",
+      "data_item": "SHPN",
+      "description": "Shipment Number",
+      "data_type": "Numeric",
+      "length": 8,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 189,
+      "field": "PDRSHT",
+      "data_item": "RSHT",
+      "description": "Requested Ship Time",
+      "data_type": "Numeric",
+      "length": 6,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 190,
+      "field": "PDPRJM",
+      "data_item": "PRJM",
+      "description": "Project Number",
+      "data_type": "Numeric",
+      "length": 8,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 191,
+      "field": "PDOSFX",
+      "data_item": "OSFX",
+      "description": "Document Pay Item - Original",
+      "data_type": "String",
+      "length": 3,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 192,
+      "field": "PDMERL",
+      "data_item": "MERL",
+      "description": "Item Revision Level",
+      "data_type": "String",
+      "length": 3,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 193,
+      "field": "PDMCLN",
+      "data_item": "MCLN",
+      "description": "Matrix Control Line Number",
+      "data_type": "Numeric",
+      "length": 6,
+      "decimals": 3,
+      "glossary": ""
+    },
+    {
+      "ordinal": 194,
+      "field": "PDMACT",
+      "data_item": "MACT",
+      "description": "Multiple Accounts",
+      "data_type": "Character",
+      "length": 1,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 195,
+      "field": "PDKTLN",
+      "data_item": "KTLN",
+      "description": "Kit Master Line Number",
+      "data_type": "Numeric",
+      "length": 6,
+      "decimals": 3,
+      "glossary": ""
+    },
+    {
+      "ordinal": 196,
+      "field": "PDFTRL",
+      "data_item": "FTRL",
+      "description": "Amount - Foreign Tax Relieved",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 2,
+      "glossary": ""
+    },
+    {
+      "ordinal": 197,
+      "field": "PDDUAL",
+      "data_item": "DUAL",
+      "description": "Dual Unit Of Measure Item",
+      "data_type": "Character",
+      "length": 1,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 198,
+      "field": "PDDRQT",
+      "data_item": "DRQT",
+      "description": "Requested Delivery Time",
+      "data_type": "Numeric",
+      "length": 6,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 199,
+      "field": "PDDLEJ",
+      "data_item": "DLEJ",
+      "description": "Lot Effectivity Date",
+      "data_type": "Date",
+      "length": 6,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 200,
+      "field": "PDCTAM",
+      "data_item": "CTAM",
+      "description": "Amount - Foreign Tax",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 2,
+      "glossary": ""
+    },
+    {
+      "ordinal": 201,
+      "field": "PDCPNT",
+      "data_item": "CPNT",
+      "description": "Component Line Number",
+      "data_type": "Numeric",
+      "length": 4,
+      "decimals": 1,
+      "glossary": ""
+    },
+    {
+      "ordinal": 202,
+      "field": "PDCHT",
+      "data_item": "CHT",
+      "description": "Change Order Time of Day",
+      "data_type": "Numeric",
+      "length": 7,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 203,
+      "field": "PDCHRT",
+      "data_item": "CHRT",
+      "description": "Time - Scheduled Required (HH/MM/SS)",
+      "data_type": "Numeric",
+      "length": 6,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 204,
+      "field": "PDCHRS",
+      "data_item": "CHRS",
+      "description": "Shift Code - Scheduled Required",
+      "data_type": "Character",
+      "length": 1,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 205,
+      "field": "PDCHMJ",
+      "data_item": "CHMJ",
+      "description": "Change Order Date - Updated",
+      "data_type": "Date",
+      "length": 6,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 206,
+      "field": "PDBCRC",
+      "data_item": "BCRC",
+      "description": "Currency Code - Base",
+      "data_type": "String",
+      "length": 3,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 207,
+      "field": "PDVR03",
+      "data_item": "VR03",
+      "description": "Reference",
+      "data_type": "String",
+      "length": 25,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 208,
+      "field": "PDLDNM",
+      "data_item": "LDNM",
+      "description": "Load Number",
+      "data_type": "Numeric",
+      "length": 8,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 209,
+      "field": "PDMKFR",
+      "data_item": "MKFR",
+      "description": "Address Number - Mark-for",
+      "data_type": "Numeric",
+      "length": 8,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 210,
+      "field": "PDPMTN",
+      "data_item": "PMTN",
+      "description": "Promotion ID",
+      "data_type": "String",
+      "length": 12,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 211,
+      "field": "PDUKID",
+      "data_item": "UKID",
+      "description": "Unique Key ID (Internal)",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 212,
+      "field": "PDUNSPSC",
+      "data_item": "UNSPSC",
+      "description": "UNSPSC Commodity Code",
+      "data_type": "String",
+      "length": 8,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 213,
+      "field": "PDCMDCDE",
+      "data_item": "CMDCDE",
+      "description": "Commodity Code",
+      "data_type": "String",
+      "length": 15,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 214,
+      "field": "PDRSFX",
+      "data_item": "RSFX",
+      "description": "Related Order Suffix",
+      "data_type": "String",
+      "length": 3,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 215,
+      "field": "PDWVID",
+      "data_item": "WVID",
+      "description": "Vessel ID",
+      "data_type": "Numeric",
+      "length": 8,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 216,
+      "field": "PDCNTRTID",
+      "data_item": "CNTRTID",
+      "description": "Contract ID",
+      "data_type": "Numeric",
+      "length": 8,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 217,
+      "field": "PDCNTRTDID",
+      "data_item": "CNTRTDID",
+      "description": "Contract Detail ID",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 218,
+      "field": "PDMOADJ",
+      "data_item": "MOADJ",
+      "description": "Manual Override Adjustment Flag",
+      "data_type": "Character",
+      "length": 1,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 219,
+      "field": "PDPODC01",
+      "data_item": "PODC01",
+      "description": "Purchase Line Code 01",
+      "data_type": "String",
+      "length": 3,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 220,
+      "field": "PDPODC02",
+      "data_item": "PODC02",
+      "description": "Purchase Line Code 02",
+      "data_type": "String",
+      "length": 3,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 221,
+      "field": "PDPODC03",
+      "data_item": "PODC03",
+      "description": "Purchase Line Code 03",
+      "data_type": "String",
+      "length": 10,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 222,
+      "field": "PDPODC04",
+      "data_item": "PODC04",
+      "description": "Purchase Line Code 04",
+      "data_type": "String",
+      "length": 10,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 223,
+      "field": "PDJBCD",
+      "data_item": "JBCD",
+      "description": "Job Type (Craft) Code",
+      "data_type": "String",
+      "length": 6,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 224,
+      "field": "PDSRQTY",
+      "data_item": "SRQTY",
+      "description": "Service Quantity",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 4,
+      "glossary": ""
+    },
+    {
+      "ordinal": 225,
+      "field": "PDSRUOM",
+      "data_item": "SRUOM",
+      "description": "Service Unit of Measure",
+      "data_type": "String",
+      "length": 2,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 226,
+      "field": "PDCFGFL",
+      "data_item": "CFGFL",
+      "description": "Created By Configurator Flag",
+      "data_type": "Character",
+      "length": 1,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 227,
+      "field": "PDPMPN",
+      "data_item": "PMPN",
+      "description": "Production Number",
+      "data_type": "String",
+      "length": 30,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 228,
+      "field": "PDPNS",
+      "data_item": "PNS",
+      "description": "Production Number Short",
+      "data_type": "Numeric",
+      "length": 10,
+      "decimals": 0,
+      "glossary": ""
+    }
+  ]
+}

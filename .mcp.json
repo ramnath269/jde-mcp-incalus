@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "jde-po-schema": {
+      "command": "python3",
+      "args": ["./jde_po_schema_server.py"],
+      "env": { "JDE_SCHEMA_DIR": "./data" }
+    }
+  }
+}
