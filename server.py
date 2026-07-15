@@ -1045,13 +1045,14 @@ def jde_po_date_to_julian(iso_date: str) -> int:
 
 # if __name__ == "__main__":
 #     mcp.run(transport="streamable-http")
-
+mcp_app=mcp.streamable_http_app()
 app = Starlette(
     routes=[
         Route("/oauth/login", oauth_login, methods=["POST"]),
         Route("/oauth/callback", oauth_callback, methods=["GET"]),
-        Mount("/", app=mcp.streamable_http_app()),
+        Mount("/", app=mcp_app),
     ],
+    lifespan=mcp_app.router.lifespan_context,
     middleware=[
         Middleware(
             CORSMiddleware,
