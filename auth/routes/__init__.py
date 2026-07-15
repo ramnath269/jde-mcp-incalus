@@ -1,4 +1,4 @@
 import logging
 
 logger = logging.getLogger(__name__)
-logger.debug("auth.stores package initialized")
+logger.debug("auth.routes package initialized")

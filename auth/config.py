@@ -1,5 +1,8 @@
+import logging
 from datetime import timedelta
 import os
+
+logger = logging.getLogger(__name__)
 
 
 class AuthConfig:
@@ -30,3 +33,15 @@ class AuthConfig:
     ACCESS_TOKEN_EXPIRY = timedelta(minutes=15)
     REFRESH_TOKEN_EXPIRY = timedelta(hours=8)
     LOGIN_URL = "http://localhost:5173/login"
+
+
+logger.info(
+    "AuthConfig loaded",
+    extra={
+        "issuer": AuthConfig.ISSUER,
+        "client_id": AuthConfig.CLIENT_ID,
+        "redirect_uri": AuthConfig.REDIRECT_URI,
+        "scopes": AuthConfig.SCOPES,
+        "login_url": AuthConfig.LOGIN_URL,
+    },
+)

@@ -1,6 +1,9 @@
+import logging
 from auth.stores.session_store import SessionStore
 from auth.services.jde_client import JDEClient
 from auth.models import AuthenticationResult
+
+logger = logging.getLogger(__name__)
 
 class JDEAuthService:
 
@@ -19,6 +22,11 @@ class JDEAuthService:
         environment: str
     ) -> AuthenticationResult:
 
+        logger.info(
+            "Authenticating user with JDE",
+            extra={"username": username, "environment": environment},
+        )
+
         response = await self.jde_client.request_token(
             username,
             password,
@@ -32,6 +40,11 @@ class JDEAuthService:
         session_id = self.session_store.create(
             username=username,
             ais_token=ais_token,
+        )
+
+        logger.info(
+            "JDE authentication successful",
+            extra={"username": username, "session_id": session_id, "environment": environment},
         )
 
         return AuthenticationResult(

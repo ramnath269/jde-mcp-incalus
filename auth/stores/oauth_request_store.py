@@ -1,8 +1,11 @@
+import logging
 from datetime import datetime, timedelta
 from threading import Lock
 from uuid import uuid4
 
 from auth.models import OAuthRequest
+
+logger = logging.getLogger(__name__)
 
 class OAuthRequestStore:
 
@@ -11,6 +14,7 @@ class OAuthRequestStore:
     def __init__(self):
         self._store: dict[str, OAuthRequest] = {}
         self._lock = Lock()
+        logger.debug("OAuthRequestStore initialized")
     
     def create(
         self,
@@ -35,6 +39,11 @@ class OAuthRequestStore:
       with self._lock:
           self._store[request.request_id] = request
 
+      logger.debug(
+          "OAuth request created in store",
+          extra={"request_id": request.request_id, "client_id": client_id},
+      )
+
       return request.request_id
     
     def get(self, request_id: str) -> OAuthRequest | None:
@@ -43,18 +52,23 @@ class OAuthRequestStore:
           request = self._store.get(request_id)
 
       if request is None:
+          logger.debug("OAuth request not found", extra={"request_id": request_id})
           return None
 
       if request.expires_at < datetime.utcnow():
           self.delete(request_id)
+          logger.debug("OAuth request expired, deleted", extra={"request_id": request_id})
           return None
 
+      logger.debug("OAuth request retrieved from store", extra={"request_id": request_id})
       return request
     
     def delete(self, request_id: str) -> None:
 
       with self._lock:
           self._store.pop(request_id, None)
+
+      logger.debug("OAuth request deleted", extra={"request_id": request_id})
 
     def cleanup(self):
 
@@ -70,3 +84,6 @@ class OAuthRequestStore:
 
           for key in expired:
               del self._store[key]
+
+      if expired:
+          logger.info("Cleaned up expired OAuth requests", extra={"count": len(expired)})

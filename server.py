@@ -1,9 +1,12 @@
+import logging
 from mcp.server.fastmcp import FastMCP
 from jde import (
     get_token,
     customer_ledger_inquiry,
     run_sql_query_with_validation,
 )
+
+logger = logging.getLogger(__name__)
 from jde_utils import get_allowed_tables_description
 from starlette.applications import Starlette
 from starlette.middleware.cors import CORSMiddleware
@@ -71,6 +74,10 @@ auth_settings = AuthSettings(
 
 # token_verifier = ProviderTokenVerifier(provider)
 
+logger.info(
+    "Initializing FastMCP server",
+    extra={"server_name": "JD Edwards MCP Incalus", "host": "0.0.0.0", "port": 8005},
+)
 mcp = FastMCP(
     "JD Edwards MCP Incalus",
     host="0.0.0.0",
@@ -86,7 +93,10 @@ mcp = FastMCP(
 @mcp.tool()
 async def jde_get_token() -> dict:
     """Authenticate with JD Edwards AIS and return a session token."""
-    return await get_token()
+    logger.info("Tool called: jde_get_token")
+    result = await get_token()
+    logger.debug("jde_get_token completed", extra={"result_keys": list(result.keys()) if isinstance(result, dict) else None})
+    return result
 
 @mcp.tool()
 async def jde_customer_ledger_inquiry(address_number: str) -> dict:
@@ -101,7 +111,10 @@ async def jde_customer_ledger_inquiry(address_number: str) -> dict:
 
     The tool automatically handles AIS authentication internally.
     """
-    return await customer_ledger_inquiry(address_number)
+    logger.info("Tool called: jde_customer_ledger_inquiry", extra={"address_number": address_number})
+    result = await customer_ledger_inquiry(address_number)
+    logger.debug("jde_customer_ledger_inquiry completed", extra={"address_number": address_number})
+    return result
 
 # Build the SQL tool description dynamically so it always reflects _ALLOWED_TABLES.
 _SQL_TOOL_DOC = f"""\
@@ -133,7 +146,10 @@ async def jde_run_sql_query(
     max_rows: int | None = None,
     query_timeout: str | None = None,
 ) -> dict:
-    return await run_sql_query_with_validation(query, max_rows, query_timeout)
+    logger.info("Tool called: jde_run_sql_query", extra={"query": query[:100], "max_rows": max_rows, "query_timeout": query_timeout})
+    result = await run_sql_query_with_validation(query, max_rows, query_timeout)
+    logger.debug("jde_run_sql_query completed", extra={"row_count": result.get("row_count") if isinstance(result, dict) else None})
+    return result
 
 
 # ── F0101 — Address Book Master (4 tools) ───────────────────────────────
@@ -157,7 +173,10 @@ async def jde_address_book_lookup(
         fields: Detail level — "summary" (default) or "full".
         schema_override: Optional schema name override.
     """
-    return await _address_book_lookup(address_number, fields, schema_override)
+    logger.info("Tool called: jde_address_book_lookup", extra={"address_number": address_number, "fields": fields})
+    result = await _address_book_lookup(address_number, fields, schema_override)
+    logger.debug("jde_address_book_lookup completed", extra={"address_number": address_number})
+    return result
 
 @mcp.tool()
 async def jde_address_book_search_by_name(
@@ -177,7 +196,10 @@ async def jde_address_book_search_by_name(
         max_rows: Maximum results to return (default 100).
         schema_override: Optional schema name override.
     """
-    return await _address_book_search_by_name(name_pattern, max_rows, schema_override)
+    logger.info("Tool called: jde_address_book_search_by_name", extra={"name_pattern": name_pattern, "max_rows": max_rows})
+    result = await _address_book_search_by_name(name_pattern, max_rows, schema_override)
+    logger.debug("jde_address_book_search_by_name completed", extra={"name_pattern": name_pattern})
+    return result
 
 @mcp.tool()
 async def jde_address_book_by_search_type(
@@ -196,7 +218,10 @@ async def jde_address_book_by_search_type(
         max_rows: Maximum results to return (default 100).
         schema_override: Optional schema name override.
     """
-    return await _address_book_by_search_type(search_type, max_rows, schema_override)
+    logger.info("Tool called: jde_address_book_by_search_type", extra={"search_type": search_type, "max_rows": max_rows})
+    result = await _address_book_by_search_type(search_type, max_rows, schema_override)
+    logger.debug("jde_address_book_by_search_type completed", extra={"search_type": search_type})
+    return result
 
 @mcp.tool()
 async def jde_address_book_by_category_code(
@@ -215,7 +240,10 @@ async def jde_address_book_by_category_code(
         max_rows: Maximum results to return (default 100).
         schema_override: Optional schema name override.
     """
-    return await _address_book_by_category_code(category_code, value, max_rows, schema_override)
+    logger.info("Tool called: jde_address_book_by_category_code", extra={"category_code": category_code, "value": value, "max_rows": max_rows})
+    result = await _address_book_by_category_code(category_code, value, max_rows, schema_override)
+    logger.debug("jde_address_book_by_category_code completed", extra={"category_code": category_code, "value": value})
+    return result
 
 
 # ── F03012 — Customer Master / AR & Credit (2 tools) ────────────────────
@@ -241,7 +269,10 @@ async def jde_customer_credit_profile(
         fields: Detail level — "summary" (default) or "full".
         schema_override: Optional schema name override.
     """
-    return await _customer_credit_profile(address_number, company, fields, schema_override)
+    logger.info("Tool called: jde_customer_credit_profile", extra={"address_number": address_number, "company": company, "fields": fields})
+    result = await _customer_credit_profile(address_number, company, fields, schema_override)
+    logger.debug("jde_customer_credit_profile completed", extra={"address_number": address_number})
+    return result
 
 @mcp.tool()
 async def jde_customer_credit_hold_check(
@@ -261,7 +292,10 @@ async def jde_customer_credit_hold_check(
         company: Optional company code.
         schema_override: Optional schema name override.
     """
-    return await _customer_credit_hold_check(address_number, company, schema_override)
+    logger.info("Tool called: jde_customer_credit_hold_check", extra={"address_number": address_number, "company": company})
+    result = await _customer_credit_hold_check(address_number, company, schema_override)
+    logger.debug("jde_customer_credit_hold_check completed", extra={"address_number": address_number})
+    return result
 
 
 # ── F03B11 — Customer Ledger / AR Invoices (6 tools) ────────────────────
@@ -282,7 +316,10 @@ async def jde_customer_aging_analysis(
         address_number: Customer Address Number (AN8).
         schema_override: Optional schema name override.
     """
-    return await _customer_aging_analysis(address_number, schema_override)
+    logger.info("Tool called: jde_customer_aging_analysis", extra={"address_number": address_number})
+    result = await _customer_aging_analysis(address_number, schema_override)
+    logger.debug("jde_customer_aging_analysis completed", extra={"address_number": address_number})
+    return result
 
 @mcp.tool()
 async def jde_customer_outstanding_balance(
@@ -300,7 +337,10 @@ async def jde_customer_outstanding_balance(
         address_number: Customer Address Number (AN8).
         schema_override: Optional schema name override.
     """
-    return await _customer_outstanding_balance(address_number, schema_override)
+    logger.info("Tool called: jde_customer_outstanding_balance", extra={"address_number": address_number})
+    result = await _customer_outstanding_balance(address_number, schema_override)
+    logger.debug("jde_customer_outstanding_balance completed", extra={"address_number": address_number})
+    return result
 
 @mcp.tool()
 async def jde_customer_past_due_invoices(
@@ -326,9 +366,16 @@ async def jde_customer_past_due_invoices(
         max_rows: Maximum invoices to return (default 100).
         schema_override: Optional schema name override.
     """
-    return await _customer_past_due_invoices(
+    logger.info("Tool called: jde_customer_past_due_invoices", extra={
+        "address_numbers_count": len(address_numbers) if address_numbers else 0,
+        "min_days_past_due": min_days_past_due,
+        "max_rows": max_rows,
+    })
+    result = await _customer_past_due_invoices(
         address_numbers, min_days_past_due, max_rows, schema_override
     )
+    logger.debug("jde_customer_past_due_invoices completed")
+    return result
 
 @mcp.tool()
 async def jde_customer_documents_by_type(
@@ -346,7 +393,10 @@ async def jde_customer_documents_by_type(
         address_number: Customer Address Number (AN8).
         schema_override: Optional schema name override.
     """
-    return await _customer_documents_by_type(address_number, schema_override)
+    logger.info("Tool called: jde_customer_documents_by_type", extra={"address_number": address_number})
+    result = await _customer_documents_by_type(address_number, schema_override)
+    logger.debug("jde_customer_documents_by_type completed", extra={"address_number": address_number})
+    return result
 
 @mcp.tool()
 async def jde_invoice_lookup(
@@ -367,7 +417,14 @@ async def jde_invoice_lookup(
         document_company: Document company key (KCO).
         schema_override: Optional schema name override.
     """
-    return await _invoice_lookup(document_number, document_type, document_company, schema_override)
+    logger.info("Tool called: jde_invoice_lookup", extra={
+        "document_number": document_number,
+        "document_type": document_type,
+        "document_company": document_company,
+    })
+    result = await _invoice_lookup(document_number, document_type, document_company, schema_override)
+    logger.debug("jde_invoice_lookup completed", extra={"document_number": document_number})
+    return result
 
 @mcp.tool()
 async def jde_invoices_due_in_range(
@@ -388,7 +445,15 @@ async def jde_invoices_due_in_range(
         max_rows: Maximum invoices to return (default 100).
         schema_override: Optional schema name override.
     """
-    return await _invoices_due_in_range(address_number, start_date, end_date, max_rows, schema_override)
+    logger.info("Tool called: jde_invoices_due_in_range", extra={
+        "address_number": address_number,
+        "start_date": start_date,
+        "end_date": end_date,
+        "max_rows": max_rows,
+    })
+    result = await _invoices_due_in_range(address_number, start_date, end_date, max_rows, schema_override)
+    logger.debug("jde_invoices_due_in_range completed", extra={"address_number": address_number})
+    return result
 
 
 # ── F03B14 — Receipts Detail / Cash Application (7 tools) ──────────────
@@ -413,7 +478,14 @@ async def jde_customer_receipts(
         max_rows: Maximum receipts to return (default 100).
         schema_override: Optional schema name override.
     """
-    return await _customer_receipts(address_number, receipt_type, max_rows, schema_override)
+    logger.info("Tool called: jde_customer_receipts", extra={
+        "address_number": address_number,
+        "receipt_type": receipt_type,
+        "max_rows": max_rows,
+    })
+    result = await _customer_receipts(address_number, receipt_type, max_rows, schema_override)
+    logger.debug("jde_customer_receipts completed", extra={"address_number": address_number})
+    return result
 
 @mcp.tool()
 async def jde_unapplied_cash(
@@ -433,7 +505,10 @@ async def jde_unapplied_cash(
         max_rows: Maximum receipts to return (default 100).
         schema_override: Optional schema name override.
     """
-    return await _unapplied_cash(address_number, max_rows, schema_override)
+    logger.info("Tool called: jde_unapplied_cash", extra={"address_number": address_number, "max_rows": max_rows})
+    result = await _unapplied_cash(address_number, max_rows, schema_override)
+    logger.debug("jde_unapplied_cash completed", extra={"address_number": address_number})
+    return result
 
 @mcp.tool()
 async def jde_customer_payment_summary(
@@ -451,7 +526,10 @@ async def jde_customer_payment_summary(
         address_number: Customer Address Number (AN8).
         schema_override: Optional schema name override.
     """
-    return await _customer_payment_summary(address_number, schema_override)
+    logger.info("Tool called: jde_customer_payment_summary", extra={"address_number": address_number})
+    result = await _customer_payment_summary(address_number, schema_override)
+    logger.debug("jde_customer_payment_summary completed", extra={"address_number": address_number})
+    return result
 
 @mcp.tool()
 async def jde_receipt_type_distribution(
@@ -469,7 +547,10 @@ async def jde_receipt_type_distribution(
         address_number: Customer Address Number (AN8).
         schema_override: Optional schema name override.
     """
-    return await _receipt_type_distribution(address_number, schema_override)
+    logger.info("Tool called: jde_receipt_type_distribution", extra={"address_number": address_number})
+    result = await _receipt_type_distribution(address_number, schema_override)
+    logger.debug("jde_receipt_type_distribution completed", extra={"address_number": address_number})
+    return result
 
 @mcp.tool()
 async def jde_writeoffs_chargebacks_deductions(
@@ -490,7 +571,14 @@ async def jde_writeoffs_chargebacks_deductions(
         max_rows: Maximum results to return (default 100).
         schema_override: Optional schema name override.
     """
-    return await _writeoffs_chargebacks_deductions(address_number, adjustment_type, max_rows, schema_override)
+    logger.info("Tool called: jde_writeoffs_chargebacks_deductions", extra={
+        "address_number": address_number,
+        "adjustment_type": adjustment_type,
+        "max_rows": max_rows,
+    })
+    result = await _writeoffs_chargebacks_deductions(address_number, adjustment_type, max_rows, schema_override)
+    logger.debug("jde_writeoffs_chargebacks_deductions completed", extra={"address_number": address_number})
+    return result
 
 @mcp.tool()
 async def jde_nsf_receipts(
@@ -508,7 +596,10 @@ async def jde_nsf_receipts(
         address_number: Customer Address Number (AN8).
         schema_override: Optional schema name override.
     """
-    return await _nsf_receipts(address_number, schema_override)
+    logger.info("Tool called: jde_nsf_receipts", extra={"address_number": address_number})
+    result = await _nsf_receipts(address_number, schema_override)
+    logger.debug("jde_nsf_receipts completed", extra={"address_number": address_number})
+    return result
 
 @mcp.tool()
 async def jde_receipts_in_range(
@@ -529,7 +620,15 @@ async def jde_receipts_in_range(
         max_rows: Maximum receipts to return (default 100).
         schema_override: Optional schema name override.
     """
-    return await _receipts_in_range(address_number, start_date, end_date, max_rows, schema_override)
+    logger.info("Tool called: jde_receipts_in_range", extra={
+        "address_number": address_number,
+        "start_date": start_date,
+        "end_date": end_date,
+        "max_rows": max_rows,
+    })
+    result = await _receipts_in_range(address_number, start_date, end_date, max_rows, schema_override)
+    logger.debug("jde_receipts_in_range completed", extra={"address_number": address_number})
+    return result
 
 
 # ── F4211 — Sales Order Detail (7 tools) ────────────────────────────────
@@ -554,7 +653,14 @@ async def jde_customer_sales_summary(
         end_date: Period end (ISO YYYY-MM-DD, default: today).
         schema_override: Optional schema name override.
     """
-    return await _customer_sales_summary(customer_number, start_date, end_date, schema_override)
+    logger.info("Tool called: jde_customer_sales_summary", extra={
+        "customer_number": customer_number,
+        "start_date": start_date,
+        "end_date": end_date,
+    })
+    result = await _customer_sales_summary(customer_number, start_date, end_date, schema_override)
+    logger.debug("jde_customer_sales_summary completed", extra={"customer_number": customer_number})
+    return result
 
 @mcp.tool()
 async def jde_customer_sales_detail(
@@ -578,7 +684,15 @@ async def jde_customer_sales_detail(
         max_rows: Maximum lines to return (default 100).
         schema_override: Optional schema name override.
     """
-    return await _customer_sales_detail(customer_number, start_date, end_date, max_rows, schema_override)
+    logger.info("Tool called: jde_customer_sales_detail", extra={
+        "customer_number": customer_number,
+        "start_date": start_date,
+        "end_date": end_date,
+        "max_rows": max_rows,
+    })
+    result = await _customer_sales_detail(customer_number, start_date, end_date, max_rows, schema_override)
+    logger.debug("jde_customer_sales_detail completed", extra={"customer_number": customer_number})
+    return result
 
 @mcp.tool()
 async def jde_sales_by_period(
@@ -602,7 +716,15 @@ async def jde_sales_by_period(
         max_rows: Maximum rows to return (default 100).
         schema_override: Optional schema name override.
     """
-    return await _sales_by_period(start_date, end_date, customer_number, max_rows, schema_override)
+    logger.info("Tool called: jde_sales_by_period", extra={
+        "start_date": start_date,
+        "end_date": end_date,
+        "customer_number": customer_number,
+        "max_rows": max_rows,
+    })
+    result = await _sales_by_period(start_date, end_date, customer_number, max_rows, schema_override)
+    logger.debug("jde_sales_by_period completed")
+    return result
 
 @mcp.tool()
 async def jde_top_customers(
@@ -621,7 +743,10 @@ async def jde_top_customers(
         top_n: Number of top customers to return (default 10).
         schema_override: Optional schema name override.
     """
-    return await _top_customers(start_date, end_date, top_n, schema_override)
+    logger.info("Tool called: jde_top_customers", extra={"start_date": start_date, "end_date": end_date, "top_n": top_n})
+    result = await _top_customers(start_date, end_date, top_n, schema_override)
+    logger.debug("jde_top_customers completed")
+    return result
 
 @mcp.tool()
 async def jde_customer_order_count(
@@ -640,7 +765,14 @@ async def jde_customer_order_count(
         end_date: Period end (ISO YYYY-MM-DD, default: today).
         schema_override: Optional schema name override.
     """
-    return await _customer_order_count(customer_number, start_date, end_date, schema_override)
+    logger.info("Tool called: jde_customer_order_count", extra={
+        "customer_number": customer_number,
+        "start_date": start_date,
+        "end_date": end_date,
+    })
+    result = await _customer_order_count(customer_number, start_date, end_date, schema_override)
+    logger.debug("jde_customer_order_count completed", extra={"customer_number": customer_number})
+    return result
 
 @mcp.tool()
 async def jde_backorder_report(
@@ -660,7 +792,10 @@ async def jde_backorder_report(
         max_rows: Maximum lines to return (default 100).
         schema_override: Optional schema name override.
     """
-    return await _backorder_report(customer_number, max_rows, schema_override)
+    logger.info("Tool called: jde_backorder_report", extra={"customer_number": customer_number, "max_rows": max_rows})
+    result = await _backorder_report(customer_number, max_rows, schema_override)
+    logger.debug("jde_backorder_report completed", extra={"customer_number": customer_number})
+    return result
 
 @mcp.tool()
 async def jde_order_status(
@@ -682,7 +817,14 @@ async def jde_order_status(
         order_company: Order company key (KCOO).
         schema_override: Optional schema name override.
     """
-    return await _order_status(order_number, order_type, order_company, schema_override)
+    logger.info("Tool called: jde_order_status", extra={
+        "order_number": order_number,
+        "order_type": order_type,
+        "order_company": order_company,
+    })
+    result = await _order_status(order_number, order_type, order_company, schema_override)
+    logger.debug("jde_order_status completed", extra={"order_number": order_number})
+    return result
 
 
 # ── Cross-table orchestration (2 tools) ─────────────────────────────────
@@ -708,7 +850,14 @@ async def jde_resolve_customer_by_name(
         max_rows: Maximum candidates to return (default 10).
         schema_override: Optional schema name override.
     """
-    return await _resolve_customer_by_name(name_pattern, search_type, max_rows, schema_override)
+    logger.info("Tool called: jde_resolve_customer_by_name", extra={
+        "name_pattern": name_pattern,
+        "search_type": search_type,
+        "max_rows": max_rows,
+    })
+    result = await _resolve_customer_by_name(name_pattern, search_type, max_rows, schema_override)
+    logger.debug("jde_resolve_customer_by_name completed", extra={"name_pattern": name_pattern})
+    return result
 
 @mcp.tool()
 async def jde_customer_360(
@@ -730,7 +879,10 @@ async def jde_customer_360(
         company: Optional company code for credit filtering.
         schema_override: Optional schema name override.
     """
-    return await _customer_360(address_number, company, schema_override)
+    logger.info("Tool called: jde_customer_360", extra={"address_number": address_number, "company": company})
+    result = await _customer_360(address_number, company, schema_override)
+    logger.debug("jde_customer_360 completed", extra={"address_number": address_number})
+    return result
 
 
 # ── F4311 — Purchase Order schema metadata (7 tools + 2 helpers) ─────────
@@ -747,7 +899,10 @@ def jde_po_list_tables() -> list[dict]:
     The entry point when you do not yet know which JDE table holds a field.
     Metadata only — pair with the live JDE data tools to actually query rows.
     """
-    return _list_po_tables()
+    logger.info("Tool called: jde_po_list_tables")
+    result = _list_po_tables()
+    logger.debug("jde_po_list_tables completed", extra={"table_count": len(result)})
+    return result
 
 @mcp.tool()
 def jde_po_get_table_schema(table: str, include_glossary: bool = False) -> dict:
@@ -761,7 +916,10 @@ def jde_po_get_table_schema(table: str, include_glossary: bool = False) -> dict:
         table: Table name, e.g. "F4311".
         include_glossary: Include per-column glossary text when True.
     """
-    return _get_table_schema(table, include_glossary)
+    logger.info("Tool called: jde_po_get_table_schema", extra={"table": table, "include_glossary": include_glossary})
+    result = _get_table_schema(table, include_glossary)
+    logger.debug("jde_po_get_table_schema completed", extra={"table": table})
+    return result
 
 @mcp.tool()
 def jde_po_get_column(field: str, table: str = "") -> dict:
@@ -776,7 +934,10 @@ def jde_po_get_column(field: str, table: str = "") -> dict:
         field: Column name, prefixed (PDUORG) or data-item (UORG) form.
         table: Optional table to restrict the search to.
     """
-    return _get_column(field, table)
+    logger.info("Tool called: jde_po_get_column", extra={"field": field, "table": table})
+    result = _get_column(field, table)
+    logger.debug("jde_po_get_column completed", extra={"field": field})
+    return result
 
 @mcp.tool()
 def jde_po_find_columns(
@@ -792,7 +953,10 @@ def jde_po_find_columns(
         table: Table to search (default "F4311").
         limit: Maximum matches to return (default 25).
     """
-    return _find_columns(query, table, limit)
+    logger.info("Tool called: jde_po_find_columns", extra={"query": query, "table": table, "limit": limit})
+    result = _find_columns(query, table, limit)
+    logger.debug("jde_po_find_columns completed", extra={"match_count": len(result)})
+    return result
 
 @mcp.tool()
 def jde_po_list_decimal_columns(table: str = "F4311") -> dict:
@@ -806,7 +970,10 @@ def jde_po_list_decimal_columns(table: str = "F4311") -> dict:
     Args:
         table: Table to inspect (default "F4311").
     """
-    return _list_decimal_columns(table)
+    logger.info("Tool called: jde_po_list_decimal_columns", extra={"table": table})
+    result = _list_decimal_columns(table)
+    logger.debug("jde_po_list_decimal_columns completed", extra={"table": table})
+    return result
 
 @mcp.tool()
 def jde_po_list_date_columns(table: str = "F4311") -> dict:
@@ -819,7 +986,10 @@ def jde_po_list_date_columns(table: str = "F4311") -> dict:
     Args:
         table: Table to inspect (default "F4311").
     """
-    return _list_date_columns(table)
+    logger.info("Tool called: jde_po_list_date_columns", extra={"table": table})
+    result = _list_date_columns(table)
+    logger.debug("jde_po_list_date_columns completed", extra={"table": table})
+    return result
 
 @mcp.tool()
 def jde_po_build_select(
@@ -838,7 +1008,10 @@ def jde_po_build_select(
         fields: Comma-separated column names; empty = the unique key.
         schema: Schema/owner to qualify the table with (default "PRODDTA").
     """
-    return _build_select(table, fields, schema)
+    logger.info("Tool called: jde_po_build_select", extra={"table": table, "fields": fields, "schema": schema})
+    result = _build_select(table, fields, schema)
+    logger.debug("jde_po_build_select completed", extra={"table": table, "fields": fields})
+    return result
 
 @mcp.tool()
 def jde_po_julian_to_date(cyyddd: int) -> str:
@@ -849,7 +1022,10 @@ def jde_po_julian_to_date(cyyddd: int) -> str:
     Args:
         cyyddd: JDE Julian date integer, e.g. 126195.
     """
-    return _julian_to_date(cyyddd)
+    logger.info("Tool called: jde_po_julian_to_date", extra={"cyyddd": cyyddd})
+    result = _julian_to_date(cyyddd)
+    logger.debug("jde_po_julian_to_date completed", extra={"cyyddd": cyyddd, "result": result})
+    return result
 
 @mcp.tool()
 def jde_po_date_to_julian(iso_date: str) -> int:
@@ -861,7 +1037,10 @@ def jde_po_date_to_julian(iso_date: str) -> int:
     Args:
         iso_date: ISO date string, e.g. "2026-07-14".
     """
-    return _date_to_julian(iso_date)
+    logger.info("Tool called: jde_po_date_to_julian", extra={"iso_date": iso_date})
+    result = _date_to_julian(iso_date)
+    logger.debug("jde_po_date_to_julian completed", extra={"iso_date": iso_date, "result": result})
+    return result
 
 
 # if __name__ == "__main__":
