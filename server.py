@@ -75,10 +75,10 @@ mcp = FastMCP(
     "JD Edwards MCP Incalus",
     host="0.0.0.0",
     port=8005,
-    # auth_server_provider=provider,
-    # auth=auth_settings,
-    # mount_path="/aoc-mcp",
-    # streamable_http_path="/mcp"
+    auth_server_provider=provider,
+    auth=auth_settings,
+    mount_path="/aoc-mcp",
+    streamable_http_path="/mcp"
 )
 
 # ── Existing tools (unchanged) ──────────────────────────────────────────
@@ -864,29 +864,29 @@ def jde_po_date_to_julian(iso_date: str) -> int:
     return _date_to_julian(iso_date)
 
 
-if __name__ == "__main__":
-    mcp.run(transport="streamable-http")
-
-# app = Starlette(
-#     routes=[
-#         Route("/oauth/login", oauth_login, methods=["POST"]),
-#         Route("/oauth/callback", oauth_callback, methods=["GET"]),
-#         Mount("/", app=mcp.streamable_http_app()),
-#     ],
-#     middleware=[
-#         Middleware(
-#             CORSMiddleware,
-#             allow_origins=["*"],  # Change to your React origin in production
-#             allow_credentials=True,
-#             allow_methods=["*"],
-#             allow_headers=["*"],
-#         )
-#     ],
-# )
-
 # if __name__ == "__main__":
-#     uvicorn.run(
-#         app,
-#         host="0.0.0.0",
-#         port=8005,
-#     )
+#     mcp.run(transport="streamable-http")
+
+app = Starlette(
+    routes=[
+        Route("/oauth/login", oauth_login, methods=["POST"]),
+        Route("/oauth/callback", oauth_callback, methods=["GET"]),
+        Mount("/", app=mcp.streamable_http_app()),
+    ],
+    middleware=[
+        Middleware(
+            CORSMiddleware,
+            allow_origins=["*"],  # Change to your React origin in production
+            allow_credentials=True,
+            allow_methods=["*"],
+            allow_headers=["*"],
+        )
+    ],
+)
+
+if __name__ == "__main__":
+    uvicorn.run(
+        app,
+        host="0.0.0.0",
+        port=8005,
+    )
