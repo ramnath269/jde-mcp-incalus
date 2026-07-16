@@ -19,7 +19,7 @@ class AuthConfig:
 
     # Static OAuth Client (MCP Inspector)
     INSPECTOR_CLIENT_ID = "mcp-inspector"
-    INSPECTOR_REDIRECT_URI = "http://localhost:6274/oauth/callback"
+    INSPECTOR_REDIRECT_URI = "http://localhost:6274/oauth/callback/debug"
 
     # Supported scopes
     SCOPES = [
