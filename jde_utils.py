@@ -279,6 +279,8 @@ _ALLOWED_TABLES = {
     "F03012": "Customer Master",
     "F4311":  "Purchase Order Detail",
     "F43121": "Purchase Order Receiver",
+    "F4101":  "Item Master",
+    "F41021": "Item Location File",
     #  "F9210" : "Data Dictionary",
 }
 

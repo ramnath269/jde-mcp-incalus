@@ -117,7 +117,7 @@ async def run_sql_query_with_validation(
     The query is first checked by ``validate_select_only`` and
     ``validate_allowed_tables`` (single read-only SELECT against allowlisted
     tables), then sent to the orchestration named by ``JDE_SQL_ORCHESTRATION``
-    (default ``ORC_2607030001CUST``). Credentials are read from environment
+    (default ``ORCH_55_RunSQL``). Credentials are read from environment
     variables (no separate token call required).
 
     Args:
@@ -143,6 +143,8 @@ async def run_sql_query_with_validation(
         If the query fails validation, returns::
 
             { "error": "<reason>", "rows": [], "row_count": 0 }
+
+    Before using this tool, make sure to use the available tools that would give faster reult
     """
 
     # ── SQL safety guard ──
@@ -161,7 +163,9 @@ async def run_sql_query_with_validation(
     # ORC_2607030001CUST (accepts username/password/environment/Query and
     # returns rows under ConnectorRequest1.rows). Override with
     # JDE_SQL_ORCHESTRATION if a differently-named orchestration is published.
-    orchestration = os.getenv("JDE_SQL_ORCHESTRATION", "ORC_2607030001CUST")
+    # orchestration = os.getenv("JDE_SQL_ORCHESTRATION", "ORC_2607030001CUST")
+    orchestration = os.getenv("JDE_SQL_ORCHESTRATION", "ORCH_55_RunSQL")
+
     url = f"{BASE_URL}/jderest/orchestrator/{orchestration}"
 
     payload: dict = {

@@ -49,6 +49,18 @@ from tools.sales_orders import (
     jde_order_status,
 )
 
+# F41021 — Item Location / Inventory (8 tools)
+from tools.item_location import (
+    jde_item_availability,
+    jde_item_location_detail,
+    jde_item_stock_by_branch,
+    jde_branch_inventory_summary,
+    jde_location_contents,
+    jde_lot_inventory,
+    jde_negative_stock,
+    jde_item_resolve,
+)
+
 # Cross-table orchestration (2 tools)
 from tools.orchestration import (
     jde_resolve_customer_by_name,

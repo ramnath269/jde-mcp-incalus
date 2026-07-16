@@ -47,6 +47,15 @@ from tools import (
     jde_customer_order_count as _customer_order_count,
     jde_backorder_report as _backorder_report,
     jde_order_status as _order_status,
+    # F41021 — Item Location / Inventory
+    jde_item_availability as _item_availability,
+    jde_item_location_detail as _item_location_detail,
+    jde_item_stock_by_branch as _item_stock_by_branch,
+    jde_branch_inventory_summary as _branch_inventory_summary,
+    jde_location_contents as _location_contents,
+    jde_lot_inventory as _lot_inventory,
+    jde_negative_stock as _negative_stock,
+    jde_item_resolve as _item_resolve,
     # Cross-table orchestration
     jde_resolve_customer_by_name as _resolve_customer_by_name,
     jde_customer_360 as _customer_360,
@@ -731,6 +740,205 @@ async def jde_customer_360(
         schema_override: Optional schema name override.
     """
     return await _customer_360(address_number, company, schema_override)
+
+
+# ── F41021 — Item Location / Inventory (8 tools) ─────────────────────────
+#
+# F41021 keys on the Short Item Number (LIITM). When a request names an item
+# in words ("SG1000", "1000# FINE"), resolve it with jde_item_resolve first.
+# Quantities are returned raw — see tools/item_location.py for the scale note.
+
+@mcp.tool()
+async def jde_item_availability(
+    item_number: int,
+    branch: str | None = None,
+    schema_override: str | None = None,
+) -> dict:
+    """Net availability for an item, rolled up across locations.
+
+    Table: F41021 (Item Location).
+
+    Returns on-hand, hard/soft/future commitments, quantity on purchase order,
+    and computed available (on-hand less all commitments), one row per branch.
+    The headline "can I sell or consume this?" tool — start here, then drill in
+    with jde_item_location_detail.
+
+    Args:
+        item_number: Short Item Number (LIITM). Use jde_item_resolve to
+            translate a catalogue number like "SG1000" into this.
+        branch: Optional Business Unit (LIMCU) filter, e.g. "20000".
+        schema_override: Optional schema name override.
+    """
+    return await _item_availability(item_number, branch, schema_override)
+
+
+@mcp.tool()
+async def jde_item_location_detail(
+    item_number: int,
+    branch: str | None = None,
+    include_zero: bool = False,
+    max_rows: int = 100,
+    schema_override: str | None = None,
+) -> dict:
+    """Every stocking location for an item — one row per location/lot.
+
+    Table: F41021 (Item Location).
+
+    Returns branch, location, lot, lot status, on-hand, commitments, available,
+    and last receipt date. A blank location or lot means the branch primary
+    location, which is the common case.
+
+    Args:
+        item_number: Short Item Number (LIITM).
+        branch: Optional Business Unit (LIMCU) filter.
+        include_zero: Include locations with zero on-hand (default False).
+        max_rows: Maximum rows to return (default 100).
+        schema_override: Optional schema name override.
+    """
+    return await _item_location_detail(
+        item_number, branch, include_zero, max_rows, schema_override
+    )
+
+
+@mcp.tool()
+async def jde_item_stock_by_branch(
+    item_number: int,
+    min_on_hand: int | None = None,
+    max_rows: int = 50,
+    schema_override: str | None = None,
+) -> dict:
+    """Where an item is stocked, ranked by on-hand quantity.
+
+    Table: F41021 (Item Location).
+
+    Aggregates to one row per branch with available alongside on-hand. Answers
+    "which plant can fill this order?" — the sourcing/stock-transfer question.
+
+    Args:
+        item_number: Short Item Number (LIITM).
+        min_on_hand: Optional floor on on-hand; omit to include every branch.
+        max_rows: Maximum branches to return (default 50).
+        schema_override: Optional schema name override.
+    """
+    return await _item_stock_by_branch(
+        item_number, min_on_hand, max_rows, schema_override
+    )
+
+
+@mcp.tool()
+async def jde_branch_inventory_summary(
+    branch: str,
+    max_rows: int = 100,
+    schema_override: str | None = None,
+) -> dict:
+    """Inventory carried by one branch, ranked by on-hand.
+
+    Tables: F41021 (Item Location), F4101 (Item Master).
+
+    One row per item, joined to F4101 for the catalogue number and
+    description. Answers "what is sitting in plant 20000?".
+
+    Args:
+        branch: Business Unit (LIMCU), e.g. "20000".
+        max_rows: Maximum items to return (default 100).
+        schema_override: Optional schema name override.
+    """
+    return await _branch_inventory_summary(branch, max_rows, schema_override)
+
+
+@mcp.tool()
+async def jde_location_contents(
+    branch: str,
+    location: str | None = None,
+    max_rows: int = 100,
+    schema_override: str | None = None,
+) -> dict:
+    """Contents of a physical location — every item in one bin or aisle.
+
+    Tables: F41021 (Item Location), F4101 (Item Master).
+
+    The warehouse-operations inverse of jde_item_location_detail: that asks
+    "where is my item?", this asks "what is in this location?".
+
+    Args:
+        branch: Business Unit (LIMCU).
+        location: Optional Location (LILOCN). Omit for all locations; a blank
+            location in JDE means the branch primary location.
+        max_rows: Maximum rows to return (default 100).
+        schema_override: Optional schema name override.
+    """
+    return await _location_contents(branch, location, max_rows, schema_override)
+
+
+@mcp.tool()
+async def jde_lot_inventory(
+    lot_number: str | None = None,
+    item_number: int | None = None,
+    max_rows: int = 100,
+    schema_override: str | None = None,
+) -> dict:
+    """Lot-level inventory for traceability and recall.
+
+    Tables: F41021 (Item Location), F4101 (Item Master).
+
+    Returns on-hand by lot with lot status (UDC 41/L: blank = approved, any
+    other code = on hold) and last receipt date. At least one of
+    lot_number/item_number is required. Treat a blank status as "no hold
+    recorded", not as confirmation the lot was reviewed.
+
+    Args:
+        lot_number: Lot/Serial Number (LILOTN).
+        item_number: Short Item Number (LIITM).
+        max_rows: Maximum rows to return (default 100).
+        schema_override: Optional schema name override.
+    """
+    return await _lot_inventory(
+        lot_number, item_number, max_rows, schema_override
+    )
+
+
+@mcp.tool()
+async def jde_negative_stock(
+    branch: str | None = None,
+    max_rows: int = 100,
+    schema_override: str | None = None,
+) -> dict:
+    """Locations with negative on-hand — a data-integrity exception report.
+
+    Tables: F41021 (Item Location), F4101 (Item Master).
+
+    Negative on-hand usually means issues posted ahead of their receipts, or a
+    mis-sequenced adjustment. Ranked most-negative first.
+
+    Args:
+        branch: Optional Business Unit (LIMCU) filter.
+        max_rows: Maximum rows to return (default 100).
+        schema_override: Optional schema name override.
+    """
+    return await _negative_stock(branch, max_rows, schema_override)
+
+
+@mcp.tool()
+async def jde_item_resolve(
+    search_text: str,
+    max_rows: int = 25,
+    schema_override: str | None = None,
+) -> dict:
+    """Translate a catalogue item number or description to LIITM.
+
+    Table: F4101 (Item Master).
+
+    F41021 keys on the Short Item Number (LIITM, e.g. 741343), but people know
+    items as "SG1000" or "1000# FINE". Searches F4101 on the 2nd item number
+    (IMLITM) and description (IMDSC1). Call this first when a request names an
+    item in words — every other F41021 tool needs LIITM.
+
+    Args:
+        search_text: Catalogue number or description fragment.
+        max_rows: Maximum matches to return (default 25).
+        schema_override: Optional schema name override.
+    """
+    return await _item_resolve(search_text, max_rows, schema_override)
 
 
 # ── F4311 — Purchase Order schema metadata (7 tools + 2 helpers) ─────────

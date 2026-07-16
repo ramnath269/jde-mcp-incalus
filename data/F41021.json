@@ -1,0 +1,559 @@
+{
+  "table": "F41021",
+  "description": "Item Location File - one row per item / branch / location / lot",
+  "prefix": "LI",
+  "system": "41 - Inventory Management",
+  "unique_key": [
+    "LIITM",
+    "LIMCU",
+    "LILOCN",
+    "LILOTN"
+  ],
+  "surrogate_key": "",
+  "time_columns": [
+    "LITDAY"
+  ],
+  "column_count": 54,
+  "columns": [
+    {
+      "ordinal": 1,
+      "field": "LIITM",
+      "data_item": "ITM",
+      "description": "Item Number - Short",
+      "data_type": "Numeric",
+      "length": 8,
+      "decimals": 0,
+      "glossary": "An inventory item number. The system provides three separate item numbers plus an extensive cross-reference capability to other item numbers (see data item XRT) to accommodate substitute item numbers, replacements, bar codes, customer numbers, supplier numbers, and so forth. The item numbers are as follows: o Item Number (short) - An eight-digit, computer-assigned item number o 2nd Item Number - The 25-digit, free-form, user defined alphanumeric item number o 3rd Item Number - Another 25-digit, free-form, user defined alphanumeric item number"
+    },
+    {
+      "ordinal": 2,
+      "field": "LIMCU",
+      "data_item": "MCU",
+      "description": "Business Unit",
+      "data_type": "String",
+      "length": 12,
+      "decimals": 0,
+      "glossary": "An alphanumeric code that identifies a separate entity within a business for which you want to track costs. For example, a business unit might be a warehouse location, job, project, work center, branch, or plant. You can assign a business unit to a document, entity, or person for purposes of responsibility reporting. For example, the system provides reports of open accounts payable and accounts receivable by business unit to track equipment by responsible department. Business unit security might prevent you from viewing information about business units for which you have no authority."
+    },
+    {
+      "ordinal": 3,
+      "field": "LILOCN",
+      "data_item": "LOCN",
+      "description": "Location",
+      "data_type": "String",
+      "length": 20,
+      "decimals": 0,
+      "glossary": "The storage location from which goods will be moved."
+    },
+    {
+      "ordinal": 4,
+      "field": "LILOTN",
+      "data_item": "LOTN",
+      "description": "Lot/Serial Number",
+      "data_type": "String",
+      "length": 30,
+      "decimals": 0,
+      "glossary": "A number that identifies a lot or a serial number. A lot is a group of items with similar characteristics."
+    },
+    {
+      "ordinal": 5,
+      "field": "LIPBIN",
+      "data_item": "PBIN",
+      "description": "Primary Location (P/S)",
+      "data_type": "Character",
+      "length": 1,
+      "decimals": 0,
+      "glossary": "A code that indicates whether this is the primary or secondary location for this item within this stocking location. Valid values are: P Primary storage location S Secondary storage location Note: You can only have one storage area marked as primary within each branch or warehouse. In some cases, the system uses the primary storage area as the default."
+    },
+    {
+      "ordinal": 6,
+      "field": "LIGLPT",
+      "data_item": "GLPT",
+      "description": "Category - G/L",
+      "data_type": "String",
+      "length": 4,
+      "decimals": 0,
+      "glossary": "A user defined code (41/9) that identifies the G/L offset that system uses when it searches for the account to which it posts the transaction. If you do not want to specify a class code, you can enter **** (four asterisks) in this field. You can use automatic accounting instructions (AAIs) to predefine classes of automatic offset accounts for the Inventory Management, Procurement, and Sales Order Management systems. You might assign G/L class codes as follows: IN20 Direct Ship Orders IN60 Transfer Orders IN80 Stock Sales The system can generate accounting entries based upon a single transaction. For example, a single sale of a stock item can trigger the generation of accounting entries similar to the following: Sales-Stock (Debit) xxxxx.xx A/R Stock Sales (Credit) xxxxx.xx Posting Category: IN80 Stock Inventory (Debit) xxxxx.xx Stock COGS (Credit) xxxxx.xx The system uses the class code and the document type to find the AAI."
+    },
+    {
+      "ordinal": 7,
+      "field": "LILOTS",
+      "data_item": "LOTS",
+      "description": "Lot Status Code",
+      "data_type": "Character",
+      "length": 1,
+      "decimals": 0,
+      "glossary": "A user defined code (41/L) that indicates the status of the lot. If you leave this field blank, it indicates that the lot is approved. All other codes indicate that the lot is on hold. You can assign a different status code to each location in which a lot resides on Item/Location Information or Location Lot Status Change."
+    },
+    {
+      "ordinal": 8,
+      "field": "LILRCJ",
+      "data_item": "LRCJ",
+      "description": "Date - Last Receipt (Julian)",
+      "data_type": "Date",
+      "length": 6,
+      "decimals": 0,
+      "glossary": "The date that the last shipment of the item was received."
+    },
+    {
+      "ordinal": 9,
+      "field": "LIPQOH",
+      "data_item": "PQOH",
+      "description": "Quantity on Hand - Primary units",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 0,
+      "glossary": "The number of units that are physically in stock. The system displays the quantity on-hand in the primary unit of measure."
+    },
+    {
+      "ordinal": 10,
+      "field": "LIPBCK",
+      "data_item": "PBCK",
+      "description": "Quantity on Backorder",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 0,
+      "glossary": "The number of units backordered in primary units of measure."
+    },
+    {
+      "ordinal": 11,
+      "field": "LIPREQ",
+      "data_item": "PREQ",
+      "description": "Quantity on Purchase Order-primary units",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 0,
+      "glossary": "The number of units specified on the purchase order in primary units of measure."
+    },
+    {
+      "ordinal": 12,
+      "field": "LIQWBO",
+      "data_item": "QWBO",
+      "description": "Quantity on Work Order Receipt",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 0,
+      "glossary": "The number of units on work orders in primary units of measure."
+    },
+    {
+      "ordinal": 13,
+      "field": "LIOT1P",
+      "data_item": "OT1P",
+      "description": "Quantity 1 - Other primary units",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 0,
+      "glossary": "The first of two quantities that can be specified as additional offsets (subtractions from on-hand) in the determination of quantities available for sale. (Primary unit of measure)"
+    },
+    {
+      "ordinal": 14,
+      "field": "LIOT2P",
+      "data_item": "OT2P",
+      "description": "Quantity 2 - Other primary units",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 0,
+      "glossary": "The second of two quantities that can be specified as additional offsets (subtractions from on-hand) in the determination of quantities available for sale. (Primary unit of measure)"
+    },
+    {
+      "ordinal": 15,
+      "field": "LIOT1A",
+      "data_item": "OT1A",
+      "description": "Quantity - Other Purchasing 1",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 0,
+      "glossary": "The quantity that appears on documents such as bid requests, which are not formal commitments to buy on the part of your organization."
+    },
+    {
+      "ordinal": 16,
+      "field": "LIHCOM",
+      "data_item": "HCOM",
+      "description": "Quantity - Hard Committed",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 0,
+      "glossary": "The number of units committed to a specific location and lot."
+    },
+    {
+      "ordinal": 17,
+      "field": "LIPCOM",
+      "data_item": "PCOM",
+      "description": "Quantity Soft Committed",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 0,
+      "glossary": "The number of units soft committed to sales orders or work orders in the primary units of measure."
+    },
+    {
+      "ordinal": 18,
+      "field": "LIFCOM",
+      "data_item": "FCOM",
+      "description": "Quantity on Future Commit",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 0,
+      "glossary": "A value that represents quantity on an order. This data item has two meanings: 1. This is the quantity on a sales order whose requested shipment date is beyond the standard commitment period specified in the Inventory Constants for that branch. As an example, if you normally ship most orders within 90 days, then an order for an item with a requested ship date a year from now would have its quantity reflected in this field. 2. The Allocation Process allocates all order quantity to this field regardless of future commitment."
+    },
+    {
+      "ordinal": 19,
+      "field": "LIFUN1",
+      "data_item": "FUN1",
+      "description": "Quantity - Work Order Soft Commit",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 0,
+      "glossary": "The number of units soft committed to Work Orders in the primary unit of measure."
+    },
+    {
+      "ordinal": 20,
+      "field": "LIQOWO",
+      "data_item": "QOWO",
+      "description": "Quantity - Work Order Hard Commit",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 0,
+      "glossary": "The number of units hard committed to work orders in the primary unit of measure."
+    },
+    {
+      "ordinal": 21,
+      "field": "LIQTTR",
+      "data_item": "QTTR",
+      "description": "Units - In Transit - Primary units",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 0,
+      "glossary": "The quantity currently in transit from the supplier."
+    },
+    {
+      "ordinal": 22,
+      "field": "LIQTIN",
+      "data_item": "QTIN",
+      "description": "Units - In Inspection - Primary units",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 0,
+      "glossary": "The quantity currently being inspected. This quantity has been received, but is not considered on hand."
+    },
+    {
+      "ordinal": 23,
+      "field": "LIQONL",
+      "data_item": "QONL",
+      "description": "Quantity - On Loan to Manufacturing",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 0,
+      "glossary": ""
+    },
+    {
+      "ordinal": 24,
+      "field": "LIQTRI",
+      "data_item": "QTRI",
+      "description": "Quantity Inbound - Warehouse",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 0,
+      "glossary": "A quantity in the primary unit of measure that you expect to add to the location detail after you confirm a putaway or replenishment suggestion."
+    },
+    {
+      "ordinal": 25,
+      "field": "LIQTRO",
+      "data_item": "QTRO",
+      "description": "Quantity Outbound - Warehouse",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 0,
+      "glossary": "A quantity in the primary unit of measure that you expect to remove from the location after you confirm a picking or replenishment suggestion."
+    },
+    {
+      "ordinal": 26,
+      "field": "LINCDJ",
+      "data_item": "NCDJ",
+      "description": "Date - Next Count (Julian)",
+      "data_type": "Date",
+      "length": 6,
+      "decimals": 0,
+      "glossary": "The date the item is next scheduled to be cycle counted. This data is for information only but can be used to narrow the records selected for display on this screen."
+    },
+    {
+      "ordinal": 27,
+      "field": "LIQTY1",
+      "data_item": "QTY1",
+      "description": "Future Use Quantity",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 0,
+      "glossary": "Quantity for future use in the Item Location file (F4102)."
+    },
+    {
+      "ordinal": 28,
+      "field": "LIQTY2",
+      "data_item": "QTY2",
+      "description": "Future Use Quantity 2",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 0,
+      "glossary": "Quantity for future use in the Item Location file (F4102)."
+    },
+    {
+      "ordinal": 29,
+      "field": "LIURAB",
+      "data_item": "URAB",
+      "description": "User Reserved Number",
+      "data_type": "Numeric",
+      "length": 8,
+      "decimals": 0,
+      "glossary": "This is a 8 position code that is reserved for the user. JDE does not currently use this field and will not utilize this field in the future."
+    },
+    {
+      "ordinal": 30,
+      "field": "LIURRF",
+      "data_item": "URRF",
+      "description": "User Reserved Reference",
+      "data_type": "String",
+      "length": 15,
+      "decimals": 0,
+      "glossary": "A 15-position reference that is reserved for the user. J.D. Edwards does not currently use this field and does not plan to use it in the future."
+    },
+    {
+      "ordinal": 31,
+      "field": "LIURAT",
+      "data_item": "URAT",
+      "description": "User Reserved Amount",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 2,
+      "glossary": "This is a 15 position code that is reserved for the user. JDE does not currently use this field and will not utilize this field in the future."
+    },
+    {
+      "ordinal": 32,
+      "field": "LIURCD",
+      "data_item": "URCD",
+      "description": "User Reserved Code",
+      "data_type": "String",
+      "length": 2,
+      "decimals": 0,
+      "glossary": "This is a 2 position code that is reserved for the user. JDE does not currently use this field and will not utilize this field in the future."
+    },
+    {
+      "ordinal": 33,
+      "field": "LIJOBN",
+      "data_item": "JOBN",
+      "description": "Work Station ID",
+      "data_type": "String",
+      "length": 10,
+      "decimals": 0,
+      "glossary": "The code that identifies the work station ID that executed a particular job."
+    },
+    {
+      "ordinal": 34,
+      "field": "LIPID",
+      "data_item": "PID",
+      "description": "Program ID",
+      "data_type": "String",
+      "length": 10,
+      "decimals": 0,
+      "glossary": "The number that identifies the batch or interactive program (batch or interactive object). For example, the number of the Sales Order Entry interactive program is P4210, and the number of the Print Invoices batch process report is R42565. The program ID is a variable length value. It is assigned according to a structured syntax in the form TSSXXX, where: T The first character of the number is alphabetic and identifies the type, such as P for Program, R for Report, and so on. For example, the value P in the number P4210 indicates that the object is a program. SS The second and third characters of the number are numeric and identify the system code. For example, the value 42 in the number P4210 indicates that this program belongs to system 42, which is the Sales Order Processing system. XXX The remaining characters of the numer are numeric and identify a unique program or report. For example, the value 10 in the number P4210 indicates that this is the Sales Order Entry program."
+    },
+    {
+      "ordinal": 35,
+      "field": "LIUPMJ",
+      "data_item": "UPMJ",
+      "description": "Date - Updated",
+      "data_type": "Date",
+      "length": 6,
+      "decimals": 0,
+      "glossary": "The date that specifies the last update to the file record."
+    },
+    {
+      "ordinal": 36,
+      "field": "LIUSER",
+      "data_item": "USER",
+      "description": "User ID",
+      "data_type": "String",
+      "length": 10,
+      "decimals": 0,
+      "glossary": "The code that identifies a user profile."
+    },
+    {
+      "ordinal": 37,
+      "field": "LITDAY",
+      "data_item": "TDAY",
+      "description": "Time of Day",
+      "data_type": "Numeric",
+      "length": 6,
+      "decimals": 0,
+      "glossary": "The computer clock in hours:minutes:seconds."
+    },
+    {
+      "ordinal": 38,
+      "field": "LIURDT",
+      "data_item": "URDT",
+      "description": "User Reserved Date",
+      "data_type": "Date",
+      "length": 6,
+      "decimals": 0,
+      "glossary": "This is a 6 position code that is reserved for the user. JDE does not currently use this field and will not utilize this field in the future."
+    },
+    {
+      "ordinal": 39,
+      "field": "LIQTO1",
+      "data_item": "QTO1",
+      "description": "Units - In Operation 1 - Primary units",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 0,
+      "glossary": "The quantity which is currently at a user-defined operation within the dock-to-stock process. The quantity has been received, but may or may not be considered to be on hand."
+    },
+    {
+      "ordinal": 40,
+      "field": "LIQTO2",
+      "data_item": "QTO2",
+      "description": "Units - In Operation 2 - Primary units",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 0,
+      "glossary": "The quantity which is currently at a user-defined operation within the dock-to-stock process. The quantity has been received, but may or may not be considered to be on hand."
+    },
+    {
+      "ordinal": 41,
+      "field": "LIHCMS",
+      "data_item": "HCMS",
+      "description": "Secondary Quantity Hard Committed",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 0,
+      "glossary": "The number of units (expressed in the secondary unit of measure) that are hard-committed to a specific location and lot."
+    },
+    {
+      "ordinal": 42,
+      "field": "LIPJCM",
+      "data_item": "PJCM",
+      "description": "Project Hard Committed Quantity in Prima",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 0,
+      "glossary": "The number of units committed to a specified location and lot for a project."
+    },
+    {
+      "ordinal": 43,
+      "field": "LIPJDM",
+      "data_item": "PJDM",
+      "description": "Project Hard Committed Quantity in Secon",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 0,
+      "glossary": "The number of units committed to a specified location and lot for a project."
+    },
+    {
+      "ordinal": 44,
+      "field": "LISCMS",
+      "data_item": "SCMS",
+      "description": "Secondary Quantity Soft Committed",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 0,
+      "glossary": "The number of units (expressed in the secondary unit of measure) that are soft-committed to sales orders or work orders."
+    },
+    {
+      "ordinal": 45,
+      "field": "LISIBW",
+      "data_item": "SIBW",
+      "description": "Secondary Quantity Inbound - Warehouse",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 0,
+      "glossary": "A quantity in the secondary unit of measure that you expect to add to the location detail after you confirm a putaway or replenishment suggestion."
+    },
+    {
+      "ordinal": 46,
+      "field": "LISOBW",
+      "data_item": "SOBW",
+      "description": "Secondary Quantity Outbound - Warehouse",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 0,
+      "glossary": "The quantity (expressed in the secondary unit of measure) that you expect to remove from the location after you confirm a picking suggestion or replenishment suggestion."
+    },
+    {
+      "ordinal": 47,
+      "field": "LISQOH",
+      "data_item": "SQOH",
+      "description": "Quantity on Hand - in Secondary units",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 0,
+      "glossary": "The number of units on hand in secondary units of measure."
+    },
+    {
+      "ordinal": 48,
+      "field": "LISQWO",
+      "data_item": "SQWO",
+      "description": "Secondary Quantity on Work Order Receipt",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 0,
+      "glossary": "The number of units, expressed in the secondary unit of measure, that are specified on the work order."
+    },
+    {
+      "ordinal": 49,
+      "field": "LISREQ",
+      "data_item": "SREQ",
+      "description": "Quantity on Purchase Order - Secondary",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 0,
+      "glossary": "The number of units, expressed in the secondary unit of measure, that are specified on the purchase order."
+    },
+    {
+      "ordinal": 50,
+      "field": "LISWHC",
+      "data_item": "SWHC",
+      "description": "Secondary Quantity WO Hard Commit",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 0,
+      "glossary": "The number of units, expressed in the secondary unit of measure, that are hard-committed to work orders."
+    },
+    {
+      "ordinal": 51,
+      "field": "LISWSC",
+      "data_item": "SWSC",
+      "description": "SecondaryQuantity W.O. Soft Commit",
+      "data_type": "Numeric",
+      "length": 15,
+      "decimals": 0,
+      "glossary": "The number of units, expressed in the secondary unit of measure, that are soft-committed to work orders."
+    },
+    {
+      "ordinal": 52,
+      "field": "LICHDF",
+      "data_item": "CHDF",
+      "description": "Critical Hold Flag",
+      "data_type": "Character",
+      "length": 1,
+      "decimals": 0,
+      "glossary": "An option that indicates whether a critical hold exists."
+    },
+    {
+      "ordinal": 53,
+      "field": "LIWPDF",
+      "data_item": "WPDF",
+      "description": "Work Flow Pending Flag",
+      "data_type": "Character",
+      "length": 1,
+      "decimals": 0,
+      "glossary": "An option that indicates whether outstanding workflow entries exist for this transaction."
+    },
+    {
+      "ordinal": 54,
+      "field": "LICFGSID",
+      "data_item": "CFGSID",
+      "description": "Unique Configuration ID",
+      "data_type": "String",
+      "length": 32,
+      "decimals": 0,
+      "glossary": "An identifier that represents a unique configuration. It is generated from an encryption algorithm. Regardless of the number of segments or levels in the configured item, the system always converts the information into a 32-character digest. The digest is always a full 32 characters in length, consists of numbers and characters, and does not contain any blanks. You cannot determine the initial value from the digest, and it has no significant meaning."
+    }
+  ]
+}
