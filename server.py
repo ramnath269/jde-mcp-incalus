@@ -1,10 +1,7 @@
 import logging
+from auth.logging_config import configure_logging
 
-logging.basicConfig(
-    level=logging.DEBUG,
-    format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
-    datefmt="%Y-%m-%d %H:%M:%S",
-)
+configure_logging()
 
 from mcp.server.fastmcp import FastMCP
 from jde import (
