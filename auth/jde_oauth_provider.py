@@ -60,27 +60,46 @@ class JDEOAuthProvider(OAuthAuthorizationServerProvider):
         client_id: str,
     ) -> OAuthClientInformationFull | None:
 
-        if client_id != AuthConfig.CLIENT_ID:
-            logger.warning("Client lookup failed: unknown client", extra={"client_id": client_id})
-            return None
+        if client_id == AuthConfig.CLIENT_ID:
+            logger.debug("Client lookup succeeded", extra={"client_id": client_id})
+            return OAuthClientInformationFull(
+                client_id=AuthConfig.CLIENT_ID,
+                client_name="Claude Desktop",
+                redirect_uris=[
+                    AuthConfig.REDIRECT_URI,
+                ],
+                grant_types=[
+                    "authorization_code",
+                    "refresh_token",
+                ],
+                response_types=[
+                    "code",
+                ],
+                scope=" ".join(AuthConfig.SCOPES),
+                token_endpoint_auth_method="none",
+            )
 
-        logger.debug("Client lookup succeeded", extra={"client_id": client_id})
-        return OAuthClientInformationFull(
-            client_id=AuthConfig.CLIENT_ID,
-            client_name="Claude Desktop",
-            redirect_uris=[
-                AuthConfig.REDIRECT_URI,
-            ],
-            grant_types=[
-                "authorization_code",
-                "refresh_token",
-            ],
-            response_types=[
-                "code",
-            ],
-            scope=" ".join(AuthConfig.SCOPES),
-            token_endpoint_auth_method="none",
-        )
+        if client_id == AuthConfig.INSPECTOR_CLIENT_ID:
+            logger.debug("Client lookup succeeded", extra={"client_id": client_id})
+            return OAuthClientInformationFull(
+                client_id=AuthConfig.INSPECTOR_CLIENT_ID,
+                client_name="MCP Inspector",
+                redirect_uris=[
+                    AuthConfig.INSPECTOR_REDIRECT_URI,
+                ],
+                grant_types=[
+                    "authorization_code",
+                    "refresh_token",
+                ],
+                response_types=[
+                    "code",
+                ],
+                scope=" ".join(AuthConfig.SCOPES),
+                token_endpoint_auth_method="none",
+            )
+
+        logger.warning("Client lookup failed: unknown client", extra={"client_id": client_id})
+        return None
 
     @staticmethod
     def verify_pkce(

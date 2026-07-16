@@ -15,8 +15,11 @@ class AuthConfig:
 
     # Static OAuth Client (Claude Desktop)
     CLIENT_ID = "claude-desktop"
-
     REDIRECT_URI = "https://claude.ai/api/mcp/auth_callback"
+
+    # Static OAuth Client (MCP Inspector)
+    INSPECTOR_CLIENT_ID = "mcp-inspector"
+    INSPECTOR_REDIRECT_URI = "http://localhost:6274/oauth/callback"
 
     # Supported scopes
     SCOPES = [
