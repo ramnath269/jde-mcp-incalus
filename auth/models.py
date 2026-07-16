@@ -1,7 +1,6 @@
 import logging
 from dataclasses import dataclass
 from datetime import datetime
-from dataclasses import dataclass
 from mcp.server.auth.provider import RefreshToken, AccessToken, AuthorizationCode
 
 logger = logging.getLogger(__name__)
@@ -41,30 +40,6 @@ class AuthenticationResult:
     username: str
     environment: str
     ais_token: str
-
-@dataclass(slots=True)
-class JDEAuthorizationCode:
-    code: str
-    session_id: str
-    client_id: str
-    redirect_uri: str
-    code_challenge: str
-    scopes: list[str]
-    expires_at: datetime
-
-@dataclass(slots=True)
-class JDEAccessToken:
-    token: str
-    session_id: str
-    username: str
-    scopes: list[str]
-    expires_at: datetime
-
-@dataclass(slots=True)
-class JDERefreshToken:
-    token: str
-    session_id: str
-    expires_at: datetime
 
 @dataclass(slots=True)
 class AuthorizationCodeEntry:

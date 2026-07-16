@@ -9,7 +9,6 @@ logger = logging.getLogger(__name__)
 
 
 class AccessTokenStore:
-    _store: dict[str, AccessTokenEntry]
     def __init__(self):
         self._store: dict[str, AccessTokenEntry] = {}
         self._lock = Lock()
