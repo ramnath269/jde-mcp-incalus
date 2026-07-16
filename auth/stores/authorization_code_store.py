@@ -1,4 +1,5 @@
 import logging
+import time
 from datetime import datetime, UTC
 from threading import Lock
 
@@ -27,6 +28,21 @@ class AuthorizationCodeStore:
         logger.debug(
             "Authorization code saved",
             extra={"code_prefix": entry.authorization_code.code[:8] + "...", "session_id": entry.session_id},
+        )
+
+        logger.debug(
+            "Authorization code object details",
+            extra={
+                "code_prefix": entry.authorization_code.code[:8] + "...",
+                "session_id": entry.session_id,
+                "client_id": entry.authorization_code.client_id,
+                "scopes": entry.authorization_code.scopes,
+                "subject": entry.authorization_code.subject,
+                "expires_at": entry.authorization_code.expires_at,
+                "ttl_seconds": int(entry.authorization_code.expires_at - time.time()),
+                "code_challenge_prefix": (entry.authorization_code.code_challenge[:12] + "...") if entry.authorization_code.code_challenge else None,
+                "redirect_uri": entry.authorization_code.redirect_uri,
+            },
         )
 
     def get(

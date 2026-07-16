@@ -44,6 +44,20 @@ class OAuthRequestStore:
           extra={"request_id": request.request_id, "client_id": client_id},
       )
 
+      logger.debug(
+          "OAuth request object details",
+          extra={
+              "request_id": request.request_id,
+              "client_id": request.client_id,
+              "redirect_uri": request.redirect_uri,
+              "state": request.state,
+              "code_challenge_prefix": request.code_challenge[:12] + "...",
+              "created_at": request.created_at.isoformat(),
+              "expires_at": request.expires_at.isoformat(),
+              "ttl_seconds": int((request.expires_at - request.created_at).total_seconds()),
+          },
+      )
+
       return request.request_id
     
     def get(self, request_id: str) -> OAuthRequest | None:

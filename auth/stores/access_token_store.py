@@ -23,6 +23,20 @@ class AccessTokenStore:
             extra={"token_prefix": entry.access_token.token[:8] + "...", "subject": entry.access_token.subject},
         )
 
+        logger.debug(
+            "Access token object details",
+            extra={
+                "token_prefix": entry.access_token.token[:8] + "...",
+                "session_id": entry.session_id,
+                "subject": entry.access_token.subject,
+                "client_id": entry.access_token.client_id,
+                "scopes": entry.access_token.scopes,
+                "expires_at": entry.access_token.expires_at,
+                "ttl_seconds": int(entry.access_token.expires_at - time.time()) if entry.access_token.expires_at else None,
+                "claims": entry.access_token.claims,
+            },
+        )
+
     def get(self, token: str) -> AccessTokenEntry | None:
         with self._lock:
             entry = self._store.get(token)

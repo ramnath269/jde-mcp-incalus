@@ -22,6 +22,19 @@ class RefreshTokenStore:
             extra={"token_prefix": entry.refresh_token.token[:8] + "...", "session_id": entry.session_id},
         )
 
+        logger.debug(
+            "Refresh token object details",
+            extra={
+                "token_prefix": entry.refresh_token.token[:8] + "...",
+                "session_id": entry.session_id,
+                "subject": entry.refresh_token.subject,
+                "client_id": entry.refresh_token.client_id,
+                "scopes": entry.refresh_token.scopes,
+                "expires_at": entry.refresh_token.expires_at,
+                "ttl_seconds": int(entry.refresh_token.expires_at - time.time()) if entry.refresh_token.expires_at else None,
+            },
+        )
+
     def get(self, token: str) -> RefreshTokenEntry | None:
         with self._lock:
 

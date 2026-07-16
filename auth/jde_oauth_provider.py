@@ -4,7 +4,7 @@ import time
 import secrets
 import base64
 import hashlib
-from datetime import UTC, datetime, timedelta
+from datetime import UTC, datetime
 from urllib.parse import urlencode
 
 from mcp.server.auth.provider import (
@@ -29,14 +29,8 @@ from auth.config import AuthConfig
 
 logger = logging.getLogger(__name__)
 
-ACCESS_TOKEN_TTL = 3600          # 1 hour
-REFRESH_TOKEN_TTL = 30 * 86400   # 30 days
-
 
 class JDEOAuthProvider(OAuthAuthorizationServerProvider):
-    AUTH_CODE_LIFETIME = timedelta(minutes=10)
-    ACCESS_TOKEN_LIFETIME = timedelta(hours=1)
-    REFRESH_TOKEN_LIFETIME = timedelta(days=30)
     def __init__(
         self,
         auth_service: JDEAuthService,
@@ -142,19 +136,19 @@ class JDEOAuthProvider(OAuthAuthorizationServerProvider):
 
     @classmethod
     def access_token_expiry(cls) -> datetime:
-        expiry = datetime.now(UTC) + cls.ACCESS_TOKEN_LIFETIME
+        expiry = datetime.now(UTC) + AuthConfig.ACCESS_TOKEN_EXPIRY
         logger.debug("Access token expiry calculated", extra={"expires_at": expiry.isoformat()})
         return expiry
 
     @classmethod
     def refresh_token_expiry(cls) -> datetime:
-        expiry = datetime.now(UTC) + cls.REFRESH_TOKEN_LIFETIME
+        expiry = datetime.now(UTC) + AuthConfig.REFRESH_TOKEN_EXPIRY
         logger.debug("Refresh token expiry calculated", extra={"expires_at": expiry.isoformat()})
         return expiry
 
     @classmethod
     def authorization_code_expiry(cls) -> datetime:
-        expiry = datetime.now(UTC) + cls.AUTH_CODE_LIFETIME
+        expiry = datetime.now(UTC) + AuthConfig.AUTHORIZATION_CODE_EXPIRY
         logger.debug("Authorization code expiry calculated", extra={"expires_at": expiry.isoformat()})
         return expiry
 
@@ -335,6 +329,9 @@ class JDEOAuthProvider(OAuthAuthorizationServerProvider):
 
       now = int(time.time())
 
+      access_token_ttl = int(AuthConfig.ACCESS_TOKEN_EXPIRY.total_seconds())
+      refresh_token_ttl = int(AuthConfig.REFRESH_TOKEN_EXPIRY.total_seconds())
+
       access_token_string = secrets.token_urlsafe(48)
       refresh_token_string = secrets.token_urlsafe(48)
 
@@ -342,7 +339,7 @@ class JDEOAuthProvider(OAuthAuthorizationServerProvider):
           token=access_token_string,
           client_id=client.client_id,
           scopes=scopes,
-          expires_at=now + ACCESS_TOKEN_TTL,
+          expires_at=now + access_token_ttl,
           subject=subject,
           claims={
               "jde": {
@@ -355,7 +352,7 @@ class JDEOAuthProvider(OAuthAuthorizationServerProvider):
           token=refresh_token_string,
           client_id=client.client_id,
           scopes=scopes,
-          expires_at=now + REFRESH_TOKEN_TTL,
+          expires_at=now + refresh_token_ttl,
           subject=subject,
       )
 
@@ -379,15 +376,15 @@ class JDEOAuthProvider(OAuthAuthorizationServerProvider):
               "session_id": session_id,
               "subject": subject,
               "scopes": scopes,
-              "access_token_ttl": ACCESS_TOKEN_TTL,
-              "refresh_token_ttl": REFRESH_TOKEN_TTL,
+              "access_token_ttl": access_token_ttl,
+              "refresh_token_ttl": refresh_token_ttl,
           },
       )
 
       return OAuthToken(
           access_token=access_token_string,
           refresh_token=refresh_token_string,
-          expires_in=ACCESS_TOKEN_TTL,
+          expires_in=access_token_ttl,
           scope=" ".join(scopes),
       )
 

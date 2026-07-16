@@ -38,7 +38,20 @@ class SessionStore:
 
         logger.info(
             "User session created",
-            extra={"session_id": session.session_id, "username": username},
+            extra={"session_id": session.session_id, "username": session.username},
+        )
+
+        logger.debug(
+            "Session object details",
+            extra={
+                "session_id": session.session_id,
+                "username": session.username,
+                "ais_token_prefix": session.ais_token[:16] + "...",
+                "created_at": session.created_at.isoformat(),
+                "last_access": session.last_access.isoformat(),
+                "expires_at": session.expires_at.isoformat(),
+                "ttl_seconds": int(session.expires_at.timestamp() - session.created_at.timestamp()),
+            },
         )
 
         return session.session_id
